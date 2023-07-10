@@ -28,7 +28,7 @@ just_product_category = None
 
 #Question 6: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
 #What is the product title for that review?
-product_title_and_count = None
+product_title_and_votes = None
 
 #Question 7: How many reviews exist in the dataframe with a 5 star rating?
 five_star_reviews = None
