@@ -7,12 +7,8 @@ from pyspark.sql.functions import current_timestamp
 spark = SparkSession.builder.appName("Week2Lab").getOrCreate()
 
 #Question 1: Read the tab separated file named "week2/reviews.tsv" into a dataframe.
-<<<<<<< HEAD
 #You will use the "df" dataframe defined here to answer all the questions below...
-df = None
-=======
 df = spark.read.csv("week2/reviews.tsv.gz", sep="\t", header=True)
->>>>>>> 172762e... Adding week 2 solution
 
 #Question 2: Display the schema of the dataframe.
 df.printSchema()
@@ -34,15 +30,11 @@ just_product_category.show(n=50)
 
 #Question 6: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
 #What is the product title for that review?
-<<<<<<< HEAD
-product_title_and_votes = None
-=======
-product_title_and_count = df.sort(desc("helpful_votes")).select("product_title", "helpful_votes")
+product_title_and_votes = df.sort(desc("helpful_votes")).select("product_title", "helpful_votes")
 #Either is fine:
-product_title_and_count.show(n=1, truncate=False)
+product_title_and_votes.show(n=1, truncate=False)
 #or
-print(product_title_and_count.first())
->>>>>>> 172762e... Adding week 2 solution
+print(product_title_and_votes.first())
 
 #Question 7: How many reviews exist in the dataframe with a 5 star rating?
 five_star_reviews = df.filter(df.star_rating == "5").count()
