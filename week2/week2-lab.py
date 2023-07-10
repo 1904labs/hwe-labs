@@ -31,11 +31,11 @@ just_product_category.show(n=50)
 
 #Question 6: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
 #What is the product title for that review?
-product_title_and_count = df.sort(desc("helpful_votes")).select("product_title", "helpful_votes")
+product_title_and_votes = df.sort(desc("helpful_votes")).select("product_title", "helpful_votes")
 #Either is fine:
-product_title_and_count.show(n=1, truncate=False)
+product_title_and_votes.show(n=1, truncate=False)
 #or
-print(product_title_and_count.first())
+print(product_title_and_votes.first())
 
 #Question 7: How many reviews exist in the dataframe with a 5 star rating?
 five_star_reviews = df.filter(df.star_rating == "5").count()
