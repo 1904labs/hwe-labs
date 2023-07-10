@@ -7,9 +7,8 @@ from pyspark.sql.functions import current_timestamp
 spark = SparkSession.builder.appName("Week2Lab").getOrCreate()
 
 #Question 1: Read the tab separated file named "week2/reviews.tsv" into a dataframe.
+#You will use the "df" dataframe defined here to answer all the questions below...
 df = None
-
-#You will use the "df" dataframe defined above to answer all the questions below...
 
 #Question 2: Display the schema of the dataframe.
 
@@ -21,7 +20,7 @@ print(f"Number of records is {count}")
 #Question 4: Print the first 5 rows of the dataframe. 
 #Some of the columns are long - print the entire record, regardless of length.
 
-#Question 5: Create a new dataframe with exactly 1 column: the value of the product category field.
+#Question 5: Create a new dataframe based on "df" with exactly 1 column: the value of the product category field.
 #Look at the first 50 rows of that dataframe. 
 #Which value appears to be the most common?
 just_product_category = None
