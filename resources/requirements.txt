@@ -1,2 +1,3 @@
 pyspark==3.1.3
-kafka-python
+kafka-python #Simple producer for writing data to Kafka
+faker #Generating fake customer data
