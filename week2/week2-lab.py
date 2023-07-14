@@ -8,7 +8,7 @@ spark = SparkSession.builder.appName("Week2Lab").getOrCreate()
 
 #Question 1: Read the tab separated file named "week2/reviews.tsv" into a dataframe.
 #You will use the "df" dataframe defined here to answer all the questions below...
-df = spark.read.csv("week2/reviews.tsv.gz", sep="\t", header=True)
+df = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
 #Question 2: Display the schema of the dataframe.
 df.printSchema()

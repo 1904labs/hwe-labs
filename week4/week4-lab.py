@@ -1,6 +1,10 @@
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, current_timestamp
 
+# Get AWS credentials from environment variables
+aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
 def getScramAuthString(username, password):
   return f"""org.apache.kafka.common.security.scram.ScramLoginModule required
@@ -11,13 +15,12 @@ def getScramAuthString(username, password):
 # Create a SparkSession
 spark = SparkSession.builder \
     .appName("Week4Lab") \
-    .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
+    .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375')\
     .config("spark.sql.shuffle.partitions", "3") \
-    .config("spark.hadoop.fs.s3a.access.key", "REDACTED") \
-    .config("spark.hadoop.fs.s3a.secret.key", "REDACTED") \
-    .config("spark.hadoop.fs.s3a.session.token", "REDACTED") \
+    .config("spark.hadoop.fs.s3a.access.key", aws_access_key_id) \
+    .config("spark.hadoop.fs.s3a.secret.key", aws_secret_access_key) \
+    .config('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.TemporaryAWSCredentialsProvider') \
     .config("spark.hadoop.fs.s3a.endpoint", "s3.us-east-1.amazonaws.com") \
-    .config('spark.hadoop.fs.s3a.aws.credentials.provider', 'com.amazonaws.auth.profile.ProfileCredentialsProvider') \
     .getOrCreate()
 
 # Define the Kafka broker and topic to read from

@@ -20,10 +20,12 @@ producer = KafkaProducer(security_protocol="SASL_SSL",
                            bootstrap_servers=bootstrap_servers)
 
 # Read the file
-with gzip.open('week2/reviews.tsv.gz', 'rt', encoding='utf-8') as file:
+with gzip.open('resources/reviews.tsv.gz', 'rt', encoding='utf-8') as file:
     num_records_sent=0
     # Read each line and send it as a message to Kafka
-    for line in file:
+    for index, line in enumerate(file):
+        if index == 0:
+            continue #Skip the first line in case it's a header row
         message = line.strip().encode('utf-8')
         producer.send(topic, value=message)
         #print(line)
