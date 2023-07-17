@@ -10,7 +10,7 @@ def getScramAuthString(username, password):
 
 # Create a SparkSession
 spark = SparkSession.builder \
-    .appName("Week3Lab") \
+    .appName("Week7Lab") \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3') \
     .config("spark.sql.shuffle.partitions", "3") \
     .getOrCreate()
