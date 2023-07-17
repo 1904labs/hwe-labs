@@ -6,7 +6,7 @@ from pyspark.sql.functions import current_timestamp
 # Create a SparkSession
 spark = SparkSession.builder.appName("Week2Lab").getOrCreate()
 
-#Question 1: Read the tab separated file named "week2/reviews.tsv" into a dataframe.
+#Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe.
 #You will use the "df" dataframe defined here to answer all the questions below...
 df = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
