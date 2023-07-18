@@ -35,10 +35,11 @@ with_load_timestamp.write \
     .parquet("s3a://hwe-tsagona/bronze/reviews/")
 
 #Question 4: Create a table on top of the reviews directory matchiing the schema from the file.
-spark.sql("CREATE DATABASE IF NOT EXISTS hwe")
-spark.sql("DROP TABLE IF EXISTS hwe.tim_bronze_reviews")
+#Name this table bronze.reviews
+spark.sql("CREATE DATABASE IF NOT EXISTS bronze")
+spark.sql("DROP TABLE IF EXISTS bronze.reviews")
 spark.sql("""
-CREATE EXTERNAL TABLE hwe.tim_bronze_reviews (
+CREATE EXTERNAL TABLE bronze.reviews (
 marketplace string,
 customer_id string,
 review_id string,
@@ -68,32 +69,32 @@ LOCATION
 #result.show()
 
 ##Question 3: How many records are in the reviews dataframe? 
-result = spark.sql("SELECT count(*) FROM hwe.tim_bronze_reviews")
+result = spark.sql("SELECT count(*) FROM bronze.reviews")
 result.show()
 
 ##Question 4: Print the first 5 rows of the dataframe. 
 ##Some of the columns are long - print the entire record, regardless of length.
-result = spark.sql("SELECT * FROM hwe.tim_bronze_reviews LIMIT 5")
+result = spark.sql("SELECT * FROM bronze.reviews LIMIT 5")
 result.show(truncate=False)
 
 ##Question 5: Create a new dataframe based on "reviews" with exactly 1 column: the value of the product category field.
 ##Look at the first 50 rows of that dataframe. 
 ##Which value appears to be the most common?
-just_product_category = spark.sql("SELECT product_category from hwe.tim_bronze_reviews LIMIT 50")
+just_product_category = spark.sql("SELECT product_category from bronze.reviews LIMIT 50")
 just_product_category.show(n=50)
 
 ##Question 6: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
 #What is the product title for that review? How many helpful votes did it have?
-most_helpful = spark.sql("SELECT product_title, helpful_votes from hwe.tim_bronze_reviews ORDER BY helpful_votes desc LIMIT 1")
+most_helpful = spark.sql("SELECT product_title, helpful_votes from bronze.reviews ORDER BY helpful_votes desc LIMIT 1")
 most_helpful.show(truncate=False)
 
 ##Question 7: How many reviews exist in the dataframe with a 5 star rating?
-five_star_reviews = spark.sql("SELECT count(*) from hwe.tim_bronze_reviews where star_rating = \"5\"")
+five_star_reviews = spark.sql("SELECT count(*) from bronze.reviews where star_rating = \"5\"")
 five_star_reviews.show()
 
 ##Question 8: Find the date with the most reviews written.
 ##Print the date and total count of the date where the most reviews were written
-review_date_and_count = spark.sql("SELECT review_date, count(*) from hwe.tim_bronze_reviews GROUP BY review_date ORDER BY count(*) DESC LIMIT 1")
+review_date_and_count = spark.sql("SELECT review_date, count(*) from bronze.reviews GROUP BY review_date ORDER BY count(*) DESC LIMIT 1")
 review_date_and_count.show()
 
 ## Stop the SparkSession
