@@ -29,7 +29,7 @@ just_product_category = reviews.select("product_category")
 just_product_category.show(n=50)
 
 #Question 6: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
-#What is the product title for that review?
+#What is the product title for that review? How many helpful votes did it have?
 product_title_and_votes = reviews.sort(desc("helpful_votes")).select("product_title", "helpful_votes")
 #Either is fine:
 product_title_and_votes.show(n=1, truncate=False)
