@@ -14,7 +14,7 @@ reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 reviews.printSchema()
 
 #Question 3: How many records are in the dataframe? 
-#Store this number in a variable named "count".
+#Store this number in a variable named "reviews_count".
 reviews_count = reviews.count()
 print(f"Number of records is {reviews_count}")
 
@@ -22,7 +22,7 @@ print(f"Number of records is {reviews_count}")
 #Some of the columns are long - print the entire record, regardless of length.
 reviews.show(n=5, truncate=False)
 
-#Question 5: Create a new dataframe based on "df" with exactly 1 column: the value of the product category field.
+#Question 5: Create a new dataframe based on "reviews" with exactly 1 column: the value of the product category field.
 #Look at the first 50 rows of that dataframe. 
 #Which value appears to be the most common?
 just_product_category = reviews.select("product_category")
@@ -36,7 +36,7 @@ product_title_and_votes.show(n=1, truncate=False)
 #or
 print(product_title_and_votes.first())
 
-#Question 7: How many reviews exist in the dataframe with a 5 star rating?
+#Question 7: How many reviews have a 5 star rating?
 five_star_reviews = reviews.filter(reviews.star_rating == "5").count()
 print(f"Number of five star reviews = {five_star_reviews}")
 
@@ -54,13 +54,5 @@ print(review_date_and_count.first())
 with_load_timestamp = reviews.withColumn("load_timestamp", current_timestamp())
 with_load_timestamp.printSchema()
 
-#Question 10: Read the tab separated file named "resources/customers.tsv.gz" into a dataframe.
-#Join it to the reviews dataframe using the common key of customer_id.
-#Create a new dataframe containing the customer_name, date_of_birth, product_title and review_date.
-#Take a look at a few rows to make sure it looks correct.
-customers = spark.read.csv("resources/customers.tsv.gz", sep="\t", header=True)
-
-inner_joined = reviews.join(customers, "customer_id", "inner").select("customer_name", "date_of_birth", "product_title", "review_date")
-inner_joined.show()
 # Stop the SparkSession
 spark.stop()
