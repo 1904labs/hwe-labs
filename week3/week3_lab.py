@@ -35,6 +35,7 @@ with_load_timestamp.write \
     .parquet("s3a://hwe-tsagona/bronze/reviews/")
 
 #Question 4: Create a table on top of the reviews directory matchiing the schema from the file.
+spark.sql("CREATE DATABASE IF NOT EXISTS hwe")
 spark.sql("DROP TABLE IF EXISTS hwe.tim_bronze_reviews")
 spark.sql("""
 CREATE EXTERNAL TABLE hwe.tim_bronze_reviews (
