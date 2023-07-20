@@ -1,3 +1,4 @@
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, current_timestamp
 
@@ -16,10 +17,10 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Define the Kafka broker and topic to read from
-kafka_bootstrap_servers = "b-2-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196,b-1-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196,b-3-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196"
+kafka_bootstrap_servers = os.environ.get("HWE_BOOTSTRAP")
+username = os.environ.get("HWE_USERNAME")
+password = os.environ.get("HWE_PASSWORD")
 kafka_topic = "timsagona"
-username = "1904labs"
-password= "1904labs"
 
 # Read data from Kafka using the DataFrame API
 df = spark \
@@ -35,7 +36,7 @@ df = spark \
     .select("key", col("value").cast("string"), "topic", "partition", "offset", "timestamp", "timestampType") \
     .withColumn("load_timestamp", current_timestamp())
 #.selectExpr("key", "CAST(value AS STRING)", "topic", "partition", "offset", "timestamp", "timestampType") 
-    
+
 
 # Process the received data
 query = df \
