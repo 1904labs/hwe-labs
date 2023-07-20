@@ -44,6 +44,12 @@ Clone the `winutils` repo:
 
 ## Visual Studio Code
 
+## Modify Powershell execution policy
+Under the Default Powershell execution policy, your programs will execute successfully but the output will be hard to read. To make the output easier:
+1. Open Powershell as an Adminstrator
+2. Execute the following command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
+
+
 ## Set up environment variables:
 To edit Windows environment variables, type `env` in the Windows search bar, and click either `New` or `Edit` in the top/`User Variables` section.
 
