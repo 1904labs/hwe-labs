@@ -25,7 +25,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 
-schema = StructType([
+bronze_schema = StructType([
 StructField("marketplace", StringType(), nullable=True)
 ,StructField("customer_id", StringType(), nullable=True)
 ,StructField("review_id", StringType(), nullable=True)
@@ -46,7 +46,7 @@ StructField("marketplace", StringType(), nullable=True)
 
 bronze_reviews = spark.readStream \
     .format("parquet") \
-    .schema(schema) \
+    .schema(bronze_schema) \
     .load("s3a://hwe-tsagona/bronze/reviews")
 
 bronze_reviews.createOrReplaceTempView("bronze_reviews")
