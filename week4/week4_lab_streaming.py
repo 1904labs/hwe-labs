@@ -13,6 +13,7 @@ aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
 # Create a SparkSession
 spark = SparkSession.builder \
     .appName("Week3Lab") \
+    .config("spark.sql.shuffle.partitions", "3") \
     .config('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.TemporaryAWSCredentialsProvider') \
     .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
     .config("spark.hadoop.fs.s3a.access.key", aws_access_key_id) \
