@@ -23,7 +23,7 @@ spark = SparkSession.builder \
     .getOrCreate()
     
 #Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe.
-#You will write this dataframe to S3, define a table on top of it, and use it to answer the same questions from the previous week using SQL
+#You will write this dataframe to S3, register it with a name so that it can be used with Spark SQL , and use it to answer the same questions from the previous week using SQL
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
 #Question 2: Add a column to the dataframe named "load_timestamp", representing the current time on your computer. 
@@ -32,34 +32,10 @@ with_load_timestamp = reviews.withColumn("load_timestamp", current_timestamp())
 #Question 3: Write the dataframe with load timestamp to s3a://hwe-HANDLE/bronze/reviews in Parquet format.
 with_load_timestamp.write \
    .mode("overwrite") \
-    .parquet("s3a://hwe-tsagona/bronze/reviews/")
+   .parquet("s3a://hwe-tsagona/bronze/reviews/")
 
 #Question 4: Create a table on top of the reviews directory matchiing the schema from the file.
-#Name this table bronze.reviews
-spark.sql("CREATE DATABASE IF NOT EXISTS bronze")
-spark.sql("DROP TABLE IF EXISTS bronze.reviews")
-spark.sql("""
-CREATE EXTERNAL TABLE bronze.reviews (
-marketplace string,
-customer_id string,
-review_id string,
-product_id string,
-product_parent string,
-product_title string,
-product_category string,
-star_rating string,
-helpful_votes string,
-total_votes string,
-vine string,
-verified_purchase string,
-review_headline string,
-review_body string,
-review_date string,
-load_timestamp timestamp)
-STORED AS PARQUET
-LOCATION
-  's3a://hwe-tsagona/bronze/reviews'
-""")
+with_load_timestamp.createOrReplaceTempView("reviews")
 
 #Answer all questions below using Spark SQL instead of the Python API.
 
@@ -69,32 +45,32 @@ LOCATION
 #result.show()
 
 ##Question 3: How many records are in the reviews dataframe? 
-result = spark.sql("SELECT count(*) FROM bronze.reviews")
+result = spark.sql("SELECT count(*) FROM reviews")
 result.show()
 
 ##Question 4: Print the first 5 rows of the dataframe. 
 ##Some of the columns are long - print the entire record, regardless of length.
-result = spark.sql("SELECT * FROM bronze.reviews LIMIT 5")
+result = spark.sql("SELECT * FROM reviews LIMIT 5")
 result.show(truncate=False)
 
 ##Question 5: Create a new dataframe based on "reviews" with exactly 1 column: the value of the product category field.
 ##Look at the first 50 rows of that dataframe. 
 ##Which value appears to be the most common?
-just_product_category = spark.sql("SELECT product_category from bronze.reviews LIMIT 50")
+just_product_category = spark.sql("SELECT product_category from reviews LIMIT 50")
 just_product_category.show(n=50)
 
 ##Question 6: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
 #What is the product title for that review? How many helpful votes did it have?
-most_helpful = spark.sql("SELECT product_title, helpful_votes from bronze.reviews ORDER BY helpful_votes desc LIMIT 1")
+most_helpful = spark.sql("SELECT product_title, helpful_votes from reviews ORDER BY helpful_votes desc LIMIT 1")
 most_helpful.show(truncate=False)
 
 ##Question 7: How many reviews exist in the dataframe with a 5 star rating?
-five_star_reviews = spark.sql("SELECT count(*) from bronze.reviews where star_rating = \"5\"")
+five_star_reviews = spark.sql("SELECT count(*) from reviews where star_rating = \"5\"")
 five_star_reviews.show()
 
 ##Question 8: Find the date with the most reviews written.
 ##Print the date and total count of the date where the most reviews were written
-review_date_and_count = spark.sql("SELECT review_date, count(*) from bronze.reviews GROUP BY review_date ORDER BY count(*) DESC LIMIT 1")
+review_date_and_count = spark.sql("SELECT review_date, count(*) from reviews GROUP BY review_date ORDER BY count(*) DESC LIMIT 1")
 review_date_and_count.show()
 
 ## Stop the SparkSession
