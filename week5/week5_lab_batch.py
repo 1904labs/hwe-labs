@@ -24,7 +24,9 @@ spark = SparkSession.builder \
     .enableHiveSupport()\
     .getOrCreate()
 
-silver_data = spark.read.format("parquet").load("s3a://hwe-tsagona/silver/reviews_batch")
+silver_data = spark.read \
+    .format("parquet") \
+    .load("s3a://hwe-tsagona/silver/reviews_batch")
 silver_data.createOrReplaceTempView("silver_reviews")
 
 gold_data = spark.sql("""

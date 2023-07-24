@@ -48,22 +48,11 @@ StructField("marketplace", StringType(), nullable=True)
 ])
 
 
-silver_data = spark.readStream.format("parquet").schema(silver_schema).load("s3a://hwe-tsagona/silver/reviews")
+silver_data = spark.readStream \
+    .format("parquet") \
+    .schema(silver_schema) \
+    .load("s3a://hwe-tsagona/silver/reviews")
 silver_data.createOrReplaceTempView("silver_reviews")
-
-#gold_data = spark.sql("""
-#    select 
-#        gender
-#       ,state
-#       ,star_rating
-#       ,purchase_date
-#       ,product_title
-#       ,count(*) as total
-#from silver_reviews
-#group by gender, state, star_rating, purchase_date, product_title
-#""")
-
-#gold_data = silver_data.withWatermark("purchase_date", "1 minute").groupBy(silver_data.purchase_date, "1 minute").count()
 
 watermarked_data = silver_data \
     .withWatermark("review_timestamp", "10 seconds")  # Watermark with a threshold of 1 day
