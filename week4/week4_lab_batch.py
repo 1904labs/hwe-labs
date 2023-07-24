@@ -23,13 +23,16 @@ spark = SparkSession.builder \
     .enableHiveSupport()\
     .getOrCreate()
     
-bronze_data = spark.read.format("parquet").load("s3a://hwe-tsagona/bronze/reviews")
-bronze_data.createOrReplaceTempView("bronze_reviews")
+bronze_reviews = spark.read \
+    .format("parquet") \
+    .load("s3a://hwe-tsagona/bronze/reviews")
+bronze_reviews.createOrReplaceTempView("bronze_reviews")
 
 bronze_customers = spark.read.format("parquet").load("s3a://hwe-tsagona/bronze/customers")
 bronze_customers.createOrReplaceTempView("bronze_customers")
 
-silver_data = spark.sql("""select r.marketplace
+silver_data = spark.sql("""
+   select r.marketplace
          ,r.customer_id
          ,r.review_id
          ,r.product_id
@@ -55,9 +58,11 @@ silver_data = spark.sql("""select r.marketplace
           on r.customer_id = c.customer_id
     """)
 
-write_silver_query = silver_data \
-    .write \
+silver_data.write \
     .format("parquet") \
     .option("outputMode", "replace") \
     .option("path", "s3a://hwe-tsagona/silver/reviews_batch") \
     .save()
+
+## Stop the SparkSession
+spark.stop()

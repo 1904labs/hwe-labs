@@ -12,7 +12,7 @@ aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
 
 # Create a SparkSession
 spark = SparkSession.builder \
-    .appName("Week3Lab") \
+    .appName("Week4Lab") \
     .config("spark.sql.shuffle.partitions", "3") \
     .config('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.TemporaryAWSCredentialsProvider') \
     .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
@@ -23,7 +23,6 @@ spark = SparkSession.builder \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
     .enableHiveSupport()\
     .getOrCreate()
-
 
 bronze_schema = StructType([
 StructField("marketplace", StringType(), nullable=True)
@@ -48,7 +47,6 @@ bronze_reviews = spark.readStream \
     .format("parquet") \
     .schema(bronze_schema) \
     .load("s3a://hwe-tsagona/bronze/reviews")
-
 bronze_reviews.createOrReplaceTempView("bronze_reviews")
 
 bronze_customers = spark.read.format("parquet").load("s3a://hwe-tsagona/bronze/customers")
@@ -82,9 +80,10 @@ silver_data = spark.sql("""
     """)
 
 streaming_query = silver_data.writeStream \
-.format("parquet") \
-.option("path", "s3a://hwe-tsagona/silver/reviews/") \
-.option("checkpointLocation", "/tmp/silver-checkpoint")
+    .format("parquet") \
+    .option("path", "s3a://hwe-tsagona/silver/reviews/") \
+    .option("outputMode", "replace") \
+    .option("checkpointLocation", "/tmp/silver-checkpoint")
 
 streaming_query.start().awaitTermination()
 
