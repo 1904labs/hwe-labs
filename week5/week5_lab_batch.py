@@ -24,7 +24,7 @@ spark = SparkSession.builder \
     .enableHiveSupport()\
     .getOrCreate()
 
-silver_data = spark.read.format("parquet").load("s3a://hwe-tsagona/silver/reviews")
+silver_data = spark.read.format("parquet").load("s3a://hwe-tsagona/silver/reviews_batch")
 silver_data.createOrReplaceTempView("silver_reviews")
 
 gold_data = spark.sql("""
@@ -32,11 +32,11 @@ gold_data = spark.sql("""
         gender
        ,state
        ,star_rating
-       ,purchase_date
+       ,review_timestamp
        ,product_title
        ,count(*) as total
 from silver_reviews
-group by gender, state, star_rating, purchase_date, product_title
+group by gender, state, star_rating, review_timestamp, product_title
 """)
 
 gold_data.show()
@@ -44,7 +44,7 @@ gold_data.show()
 write_gold_query = gold_data \
     .write \
     .mode("overwrite") \
-.parquet("s3a://hwe-tsagona/gold/fact_review")
+.parquet("s3a://hwe-tsagona/gold/fact_review_batch")
 
 ## Stop the SparkSession
 spark.stop()

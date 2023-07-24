@@ -71,7 +71,7 @@ watermarked_data = silver_data \
 # Perform the aggregation based on gender, state, star_rating, purchase_date, and product_title
 aggregated_data = watermarked_data \
     .groupBy("gender", "state", "star_rating", "review_timestamp", "product_title") \
-    .agg(count("*").alias("count"))
+    .agg(count("*").alias("total"))
 
 write_gold_query = aggregated_data \
     .writeStream \

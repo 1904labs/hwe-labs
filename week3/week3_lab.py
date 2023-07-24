@@ -29,6 +29,7 @@ reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
 #Question 2: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
 with_review_timestamp = reviews.withColumn("review_timestamp", current_timestamp())
+with_review_timestamp.printSchema()
 
 #Question 3: Write the dataframe with load timestamp to s3a://hwe-HANDLE/bronze/reviews in Parquet format.
 with_review_timestamp.write \

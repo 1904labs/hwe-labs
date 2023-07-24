@@ -1,4 +1,4 @@
-import os
+emport os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import desc
 from pyspark.sql.functions import current_timestamp
@@ -40,8 +40,8 @@ vine string,
 verified_purchase string,
 review_headline string,
 review_body string,
-review_date string,
-load_timestamp timestamp)
+purchase_date string,
+review_timestamp timestamp)
 STORED AS PARQUET
 LOCATION
   's3a://hwe-tsagona/bronze/reviews'
@@ -65,8 +65,8 @@ CREATE EXTERNAL TABLE silver.reviews (
          ,verified_purchase string
          ,review_headline string
          ,review_body string
-         ,review_date string
-         ,load_timestamp timestamp
+         ,purchase_date string
+         ,review_timestamp timestamp
          ,customer_name string
          ,gender string
          ,date_of_birth string
