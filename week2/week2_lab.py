@@ -40,19 +40,19 @@ print(product_title_and_votes.first())
 five_star_reviews = reviews.filter(reviews.star_rating == "5").count()
 print(f"Number of five star reviews = {five_star_reviews}")
 
-#Question 8: Find the date with the most reviews written.
-#Print the date and total count of the date where the most reviews were written
-review_date_and_count = reviews.groupBy("review_date").count().sort(desc("count"))
+#Question 8: Find the date with the most purchases.
+#Print the date and total count of the date with the most purchases
+purchase_date_and_count = reviews.groupBy("purchase_date").count().sort(desc("count"))
 #Either is fine:
-review_date_and_count.show(n=1, truncate=False)
+purchase_date_and_count.show(n=1, truncate=False)
 #or:
-print(review_date_and_count.first())
+print(purchase_date_and_count.first())
 
 
-#Question 9: Add a column to the dataframe named "load_timestamp", representing the current time on your computer. 
+#Question 9: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
 #Print the schema and inspect a few rows of data to make sure the data is correctly populated.
-with_load_timestamp = reviews.withColumn("load_timestamp", current_timestamp())
-with_load_timestamp.printSchema()
+with_review_timestamp = reviews.withColumn("review_timestamp", current_timestamp())
+with_review_timestamp.printSchema()
 
 # Stop the SparkSession
 spark.stop()

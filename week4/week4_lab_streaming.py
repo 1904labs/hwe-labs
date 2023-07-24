@@ -40,8 +40,8 @@ StructField("marketplace", StringType(), nullable=True)
 ,StructField("verified_purchase", StringType(), nullable=True)
 ,StructField("review_headline", StringType(), nullable=True)
 ,StructField("review_body", StringType(), nullable=True)
-,StructField("review_date", StringType(), nullable=True)
-,StructField("load_timestamp", TimestampType(), nullable=True)
+,StructField("purchase_date", StringType(), nullable=True)
+,StructField("review_timestamp", TimestampType(), nullable=True)
 ])
 
 bronze_reviews = spark.readStream \
@@ -69,8 +69,8 @@ silver_data = spark.sql("""
          ,r.verified_purchase
          ,r.review_headline
          ,r.review_body
-         ,r.review_date
-         ,r.load_timestamp
+         ,r.purchase_date
+         ,r.review_timestamp
          ,c.customer_name
          ,c.gender
          ,c.date_of_birth

@@ -43,8 +43,8 @@ silver_data = spark.sql("""select r.marketplace
          ,r.verified_purchase
          ,r.review_headline
          ,r.review_body
-         ,r.review_date
-         ,r.load_timestamp
+         ,r.purchase_date
+         ,r.review_timestamp
          ,c.customer_name
          ,c.gender
          ,c.date_of_birth

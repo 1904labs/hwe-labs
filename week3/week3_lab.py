@@ -27,16 +27,16 @@ spark = SparkSession.builder \
 #You will write this dataframe to S3, register it with a name so that it can be used with Spark SQL , and use it to answer the same questions from the previous week using SQL
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
-#Question 2: Add a column to the dataframe named "load_timestamp", representing the current time on your computer. 
-with_load_timestamp = reviews.withColumn("load_timestamp", current_timestamp())
+#Question 2: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
+with_review_timestamp = reviews.withColumn("review_timestamp", current_timestamp())
 
 #Question 3: Write the dataframe with load timestamp to s3a://hwe-HANDLE/bronze/reviews in Parquet format.
-with_load_timestamp.write \
+with_review_timestamp.write \
    .mode("overwrite") \
    .parquet("s3a://hwe-tsagona/bronze/reviews/")
 
 #Question 4: Create a table on top of the reviews directory matchiing the schema from the file.
-with_load_timestamp.createOrReplaceTempView("reviews")
+with_review_timestamp.createOrReplaceTempView("reviews")
 
 #Answer all questions below using Spark SQL instead of the Python API.
 
@@ -69,10 +69,10 @@ most_helpful.show(truncate=False)
 five_star_reviews = spark.sql("SELECT count(*) from reviews where star_rating = \"5\"")
 five_star_reviews.show()
 
-##Question 8: Find the date with the most reviews written.
-##Print the date and total count of the date where the most reviews were written
-review_date_and_count = spark.sql("SELECT review_date, count(*) from reviews GROUP BY review_date ORDER BY count(*) DESC LIMIT 1")
-review_date_and_count.show()
+##Question 8: Find the date with the most purchases.
+##Print the date and total count of the date which had the most purchases.
+purchase_date_and_count = spark.sql("SELECT purchase_date, count(*) from reviews GROUP BY purchase_date ORDER BY count(*) DESC LIMIT 1")
+purchase_date_and_count.show()
 
 ## Stop the SparkSession
 spark.stop()

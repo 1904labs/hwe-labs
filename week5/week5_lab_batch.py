@@ -32,11 +32,11 @@ gold_data = spark.sql("""
         gender
        ,state
        ,star_rating
-       ,review_date
+       ,purchase_date
        ,product_title
        ,count(*) as total
 from silver_reviews
-group by gender, state, star_rating, review_date, product_title
+group by gender, state, star_rating, purchase_date, product_title
 """)
 
 gold_data.show()

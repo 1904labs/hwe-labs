@@ -55,8 +55,8 @@ df = spark \
                ,"split(value, '\t')[11] AS verified_purchase"
                ,"split(value, '\t')[12] AS review_headline"
                ,"split(value, '\t')[13] AS review_body"
-               ,"split(value, '\t')[14] AS review_date") \
-    .withColumn("load_timestamp", current_timestamp())
+               ,"split(value, '\t')[14] AS purchase_date") \
+    .withColumn("review_timestamp", current_timestamp())
 
 # Process the received data
 query = df \

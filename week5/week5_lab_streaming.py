@@ -38,8 +38,8 @@ StructField("marketplace", StringType(), nullable=True)
 ,StructField("verified_purchase", StringType(), nullable=True)
 ,StructField("review_headline", StringType(), nullable=True)
 ,StructField("review_body", StringType(), nullable=True)
-,StructField("review_date", StringType(), nullable=True)
-,StructField("load_timestamp", TimestampType(), nullable=True)
+,StructField("purchase_date", StringType(), nullable=True)
+,StructField("review_timestamp", TimestampType(), nullable=True)
 ,StructField("customer_name", StringType(), nullable=True)
 ,StructField("gender", StringType(), nullable=True)
 ,StructField("date_of_birth", StringType(), nullable=True)
@@ -56,21 +56,21 @@ silver_data.createOrReplaceTempView("silver_reviews")
 #        gender
 #       ,state
 #       ,star_rating
-#       ,review_date
+#       ,purchase_date
 #       ,product_title
 #       ,count(*) as total
 #from silver_reviews
-#group by gender, state, star_rating, review_date, product_title
+#group by gender, state, star_rating, purchase_date, product_title
 #""")
 
-#gold_data = silver_data.withWatermark("review_date", "1 minute").groupBy(silver_data.review_date, "1 minute").count()
+#gold_data = silver_data.withWatermark("purchase_date", "1 minute").groupBy(silver_data.purchase_date, "1 minute").count()
 
 watermarked_data = silver_data \
-    .withWatermark("load_timestamp", "10 seconds")  # Watermark with a threshold of 1 day
+    .withWatermark("review_timestamp", "10 seconds")  # Watermark with a threshold of 1 day
 
-# Perform the aggregation based on gender, state, star_rating, review_date, and product_title
+# Perform the aggregation based on gender, state, star_rating, purchase_date, and product_title
 aggregated_data = watermarked_data \
-    .groupBy("gender", "state", "star_rating", "load_timestamp", "product_title") \
+    .groupBy("gender", "state", "star_rating", "review_timestamp", "product_title") \
     .agg(count("*").alias("count"))
 
 write_gold_query = aggregated_data \
