@@ -38,6 +38,6 @@ with gzip.open(input_file_path, 'rt', encoding='utf-8') as input_file, gzip.open
                 customer_name = fake.name_female()
             date_of_birth = fake.date_of_birth()
             city = fake.city()
-            state = fake.state()
+            state = fake.state_abbr(include_territories=False, include_freely_associated_states=False)
             writer.writerow([customer_id, customer_name, gender, date_of_birth, city, state])
 
