@@ -2,7 +2,7 @@ import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import desc
 from pyspark.sql.functions import current_timestamp
-from pyspark.sql.types import StructType, StructField, StringType, TimestampType
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType, IntegerType
 
 
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
@@ -32,9 +32,9 @@ StructField("marketplace", StringType(), nullable=True)
 ,StructField("product_parent", StringType(), nullable=True)
 ,StructField("product_title", StringType(), nullable=True)
 ,StructField("product_category", StringType(), nullable=True)
-,StructField("star_rating", StringType(), nullable=True)
-,StructField("helpful_votes", StringType(), nullable=True)
-,StructField("total_votes", StringType(), nullable=True)
+,StructField("star_rating", IntegerType(), nullable=True)
+,StructField("helpful_votes", IntegerType(), nullable=True)
+,StructField("total_votes", IntegerType(), nullable=True)
 ,StructField("vine", StringType(), nullable=True)
 ,StructField("verified_purchase", StringType(), nullable=True)
 ,StructField("review_headline", StringType(), nullable=True)

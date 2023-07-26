@@ -56,6 +56,15 @@ print(product_title_and_votes.first())
 five_star_reviews = reviews.filter(reviews.star_rating == "5").count()
 print(f"Number of five star reviews = {five_star_reviews}")
 
+#Question 8: Currently every field in the data file is interpreted as a string, but there are 3 that should really be numbers.
+#Create a new dataframe with just those 3 columns, except cast them as "int"s.
+#Look at 10 rows from this dataframe.
+int_columns = reviews.select(col("star_rating").cast('int'), col("helpful_votes").cast("int"), col("total_votes").cast("int"))
+#or
+int_columns = reviews.selectExpr("cast(star_rating as int)", "cast(helpful_votes as int)", "cast(total_votes as int)")
+int_columns.show(n=10)
+
+
 #Question 8: Find the date with the most purchases.
 #Print the date and total count of the date with the most purchases
 purchase_date_and_count = reviews.groupBy("purchase_date").count().sort(desc("count"))
@@ -77,7 +86,7 @@ with_review_timestamp.write \
 
 #Question 11: Read the tab separated file named "resources/customers.tsv.gz" into a dataframe
 #Write to S3 under s3a://BUCKET/path/bronze/customers
-#You will use this "customers" data set in a later lab...
+#There are no questions to answer about this dat set right now, but you will use it in a later lab...
 customers = spark.read.csv("resources/customers.tsv.gz", sep="\t", header=True)
 customers.write \
     .mode("overwrite") \

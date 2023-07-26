@@ -1,7 +1,7 @@
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import count
-from pyspark.sql.types import StructType, StructField, StringType, TimestampType
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType, IntegerType
 
 
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
@@ -31,9 +31,9 @@ StructField("marketplace", StringType(), nullable=True)
 ,StructField("product_parent", StringType(), nullable=True)
 ,StructField("product_title", StringType(), nullable=True)
 ,StructField("product_category", StringType(), nullable=True)
-,StructField("star_rating", StringType(), nullable=True)
-,StructField("helpful_votes", StringType(), nullable=True)
-,StructField("total_votes", StringType(), nullable=True)
+,StructField("star_rating", IntegerType(), nullable=True)
+,StructField("helpful_votes", IntegerType(), nullable=True)
+,StructField("total_votes", IntegerType(), nullable=True)
 ,StructField("vine", StringType(), nullable=True)
 ,StructField("verified_purchase", StringType(), nullable=True)
 ,StructField("review_headline", StringType(), nullable=True)
@@ -55,7 +55,7 @@ silver_data = spark.readStream \
 silver_data.createOrReplaceTempView("silver_reviews")
 
 watermarked_data = silver_data \
-    .withWatermark("review_timestamp", "10 seconds")  # Watermark with a threshold of 1 day
+    .withWatermark("review_timestamp", "10 seconds") 
 
 # Perform the aggregation based on gender, state, star_rating, purchase_date, and product_title
 aggregated_data = watermarked_data \

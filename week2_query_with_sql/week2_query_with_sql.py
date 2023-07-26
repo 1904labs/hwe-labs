@@ -53,6 +53,12 @@ most_helpful.show(truncate=False)
 five_star_reviews = spark.sql("SELECT count(*) from reviews where star_rating = \"5\"")
 five_star_reviews.show()
 
+#Question 9: Currently every field in the data file is interpreted as a string, but there are 3 that should really be numbers.
+#Create a new dataframe with just those 3 columns, except cast them as "int"s.
+#Look at 10 rows from this dataframe.
+int_columns = spark.sql("select cast(star_rating as int), cast(helpful_votes as int), cast(total_votes as int) from reviews")
+int_columns.show(n=10)
+
 ##Question 9: Find the date with the most purchases.
 ##Print the date and total count of the date which had the most purchases.
 purchase_date_and_count = spark.sql("SELECT purchase_date, count(*) from reviews GROUP BY purchase_date ORDER BY count(*) DESC LIMIT 1")
