@@ -25,13 +25,5 @@ ath = boto3.client('athena', region_name='us-east-1', aws_access_key_id=aws_acce
     aws_secret_access_key=aws_secret_access_key,
     aws_session_token=aws_session_token)
 
-# OR Initialize Boto3 Glue resource
-#glue_resource = boto3.resource('glue', region_name='us-east-1')
-
-# Get the Glue Catalog databases
-#databases = glue_client.get_databases()
-#pprint.pprint(databases, width=1)
-#print(json.dumps(databases, indent=4))
-
 ath.start_query_execution(QueryString=querystring, WorkGroup="hwe",
         ResultConfiguration={'OutputLocation': 's3://hwe-tsagona/queries/'})
