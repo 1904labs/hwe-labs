@@ -24,6 +24,11 @@ spark = SparkSession.builder \
     .enableHiveSupport()\
     .getOrCreate()
 
+#For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
+logger = spark.sparkContext._jvm.org.apache.log4j
+logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
+logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
+
 silver_data = spark.read \
     .format("parquet") \
     .load("s3a://hwe-tsagona/silver/reviews_batch")

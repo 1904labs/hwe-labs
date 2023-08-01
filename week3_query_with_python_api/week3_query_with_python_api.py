@@ -22,6 +22,11 @@ spark = SparkSession.builder \
     .enableHiveSupport()\
     .getOrCreate()
 
+#For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
+logger = spark.sparkContext._jvm.org.apache.log4j
+logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
+logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
+
 #Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe.
 #You will use the "reviews" dataframe defined here to answer all the questions below...
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)

@@ -22,7 +22,12 @@ spark = SparkSession.builder \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
     .enableHiveSupport()\
     .getOrCreate()
-    
+
+#For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
+logger = spark.sparkContext._jvm.org.apache.log4j
+logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
+logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
+
 bronze_reviews = spark.read \
     .format("parquet") \
     .load("s3a://hwe-tsagona/bronze/reviews")
