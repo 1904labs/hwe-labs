@@ -20,12 +20,13 @@ logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level
 #You will write this dataframe to S3, register it with a name so that it can be used with Spark SQL , and use it to answer the same questions from the previous week using SQL
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
-#Question 2: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
-with_review_timestamp = reviews.withColumn("review_timestamp", current_timestamp())
-with_review_timestamp.printSchema()
+#Question 2: Create a table on top of the reviews directory matchiing the schema from the file.
+reviews.createOrReplaceTempView("reviews")
 
-#Question 3: Create a table on top of the reviews directory matchiing the schema from the file.
-with_review_timestamp.createOrReplaceTempView("reviews")
+#Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
+with_review_timestamp = spark.sql("select r.*, current_timestamp() from reviews r")
+with_review_timestamp.printSchema()
+with_review_timestamp.show()
 
 #Answer all questions below using Spark SQL instead of the Python API.
 
