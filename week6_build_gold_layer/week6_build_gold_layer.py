@@ -18,7 +18,6 @@ spark = SparkSession.builder \
     .config("spark.hadoop.fs.s3a.access.key", aws_access_key_id) \
     .config("spark.hadoop.fs.s3a.secret.key", aws_secret_access_key) \
     .config("spark.hadoop.fs.s3a.session.token", aws_session_token) \
-    .config("spark.sql.catalogImplementation", "hive") \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
     .master('local[*]') \
     .getOrCreate()
