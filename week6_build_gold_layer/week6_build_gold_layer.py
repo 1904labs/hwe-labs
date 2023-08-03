@@ -11,7 +11,7 @@ aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
 
 # Create a SparkSession
 spark = SparkSession.builder \
-    .appName("Week5Lab") \
+    .appName("Week6Lab") \
     .config("spark.sql.shuffle.partitions", "3") \
     .config('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.TemporaryAWSCredentialsProvider') \
     .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
@@ -20,7 +20,7 @@ spark = SparkSession.builder \
     .config("spark.hadoop.fs.s3a.session.token", aws_session_token) \
     .config("spark.sql.catalogImplementation", "hive") \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
-    .enableHiveSupport()\
+    .master('local[*]') \
     .getOrCreate()
 
 #For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...

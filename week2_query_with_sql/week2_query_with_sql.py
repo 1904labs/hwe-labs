@@ -8,7 +8,7 @@ spark = SparkSession.builder \
     .config("spark.sql.shuffle.partitions", "3") \
     .config("spark.sql.catalogImplementation", "hive") \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
-    .enableHiveSupport()\
+    .master('local[*]') \
     .getOrCreate()
 
 #For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
