@@ -33,9 +33,11 @@ Download the and execute Zulu Microsoft Installer (msi).
 
 Make sure the options about updating your PATH and setting JAVA_HOME are set.
 
-After installation is complete, open a brand new command prompt (do not re-use an existing DOS prompt), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
+After installation is complete, close any existing command/DOS prompts and open a brand new command prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
 
 ## Git Bash
+
+TODO, should be straightforward
 
 ## WinUtils
 
@@ -43,6 +45,8 @@ Clone the `winutils` repo:
 `git clone https://github.com/cdarlint/winutils`
 
 ## Visual Studio Code
+
+TODO, should be straightforward
 
 ## Modify Powershell execution policy
 Under the Default Powershell execution policy, your programs will execute successfully but the output will be hard to read. To make the output easier:

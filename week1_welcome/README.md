@@ -2,11 +2,11 @@
 
 To set up your environment, we are going to install:
 
-* Python 3.10
-* Java 1.8
-* Git Bash
-* WinUtils
-* Visual Studio Code ("VS Code")
+* Python 3.10: must be exactly this version
+* Java 1.8: must be exactly this version
+* Git Bash: version is not important - can skip this if you already have it
+* WinUtils: Windows only
+* Visual Studio Code/"VS Code": version is not important - can skip this if you already have it 
 
 Then set up:
 
