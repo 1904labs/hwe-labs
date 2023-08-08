@@ -142,6 +142,7 @@ Change the interpreter to the one located in your virtual environment by doing t
 
 * Click on `3.11.4 64-bit` (or whatever version you see in the taskbar)
 * A "Select Interpreter" box will appear at the top of the window, and an option should be listed that looks something like `Python 3.10.12 ('hwe')`:
+  
   ![Alt text](<resources/interpreters.png>)
 * Click the `hwe` virtual environment option indicated.
 
