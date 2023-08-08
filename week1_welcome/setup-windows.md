@@ -1,6 +1,6 @@
 # Windows Setup Instructions
 
-Note: It is possible you already have other/more recent versions of Python and Java already on your computer (Java 1.8 came out in 2014!). However, it is very important to have exactly these versions: lots of data engineering projects were built off of Java 1.8, and you will encounter lots of errors (some obvious, some tricky) if your versions of Java, Python, and AWS libraries are not corrreclty in sync!
+Note: It is possible you already have other/more recent versions of Python and Java already on your computer (Java 1.8 came out in 2014!). However, it is very important to have exactly these versions: lots of data engineering projects were built off of Java 1.8, and you will encounter lots of errors (some obvious, some tricky) if your versions of Java, Python, and AWS libraries are not correctly in sync!
 
 ## Installing Python
 
@@ -95,7 +95,7 @@ Note: The last step will take several minutes - pyspark is a large download with
 
 Open VS Code, Select `File\Open Folder`, navigate to your `C:\Users\YOU` directory, click once on `hwe-labs` to highlight it (don't double click to enter it!), then click the `Select Folder` button.
 
-On the left side explorer panel, double click on `week1\spark_installation_test.py`.
+On the left side explorer panel, double click on `week1_welcome\spark_installation_test.py`.
 
 In the bottom right corner, next to the word `Python`, it should say something like `3.10.11 64-bit`. Change the interpreter to the one located in your virtual environment by doing the following:
 
@@ -108,7 +108,7 @@ In the bottom right corner, next to the word `Python`, it should say something l
 
 ## Test your environment
 
-Click the triangle/play near the top right corner of your editor to execute the script. If everything is sucessful, you should see a congratulatory message.
+Click the triangle/play near the top right corner of your editor to execute the script. If everything is successful, you should see a congratulatory message.
 
 Note: It is common to see lines that look like the ones below at the end of your output. You will see them often throughout the course, but they can be ignored and do not indicate any problems with your code.
 
