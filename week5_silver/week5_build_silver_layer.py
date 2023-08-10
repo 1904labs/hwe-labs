@@ -28,66 +28,15 @@ logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
-bronze_schema = StructType([
-StructField("marketplace", StringType(), nullable=True)
-,StructField("customer_id", StringType(), nullable=True)
-,StructField("review_id", StringType(), nullable=True)
-,StructField("product_id", StringType(), nullable=True)
-,StructField("product_parent", StringType(), nullable=True)
-,StructField("product_title", StringType(), nullable=True)
-,StructField("product_category", StringType(), nullable=True)
-,StructField("star_rating", IntegerType(), nullable=True)
-,StructField("helpful_votes", IntegerType(), nullable=True)
-,StructField("total_votes", IntegerType(), nullable=True)
-,StructField("vine", StringType(), nullable=True)
-,StructField("verified_purchase", StringType(), nullable=True)
-,StructField("review_headline", StringType(), nullable=True)
-,StructField("review_body", StringType(), nullable=True)
-,StructField("purchase_date", StringType(), nullable=True)
-,StructField("review_timestamp", TimestampType(), nullable=True)
-])
+bronze_schema = None
 
-bronze_reviews = spark.readStream \
-    .format("parquet") \
-    .schema(bronze_schema) \
-    .load("s3a://hwe-tsagona/bronze/reviews")
-bronze_reviews.createOrReplaceTempView("bronze_reviews")
+bronze_reviews = None
 
-bronze_customers = spark.read.format("parquet").load("s3a://hwe-tsagona/bronze/customers")
-bronze_customers.createOrReplaceTempView("bronze_customers")
+bronze_customers = None
 
-silver_data = spark.sql("""
-   select r.marketplace
-         ,r.customer_id
-         ,r.review_id
-         ,r.product_id
-         ,r.product_parent
-         ,r.product_title
-         ,r.product_category
-         ,r.star_rating
-         ,r.helpful_votes
-         ,r.total_votes
-         ,r.vine
-         ,r.verified_purchase
-         ,r.review_headline
-         ,r.review_body
-         ,r.purchase_date
-         ,r.review_timestamp
-         ,c.customer_name
-         ,c.gender
-         ,c.date_of_birth
-         ,c.city
-         ,c.state
-    from bronze_reviews r
-          inner join bronze_customers c
-          on r.customer_id = c.customer_id
-    """)
+silver_data = None
 
-streaming_query = silver_data.writeStream \
-    .format("parquet") \
-    .option("path", "s3a://hwe-tsagona/silver/reviews/") \
-    .option("outputMode", "replace") \
-    .option("checkpointLocation", "/tmp/silver-checkpoint")
+streaming_query = None
 
 streaming_query.start().awaitTermination()
 

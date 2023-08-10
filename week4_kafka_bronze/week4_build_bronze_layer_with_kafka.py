@@ -46,32 +46,10 @@ df = spark \
     .option("kafka.security.protocol", "SASL_SSL") \
     .option("kafka.sasl.mechanism", "SCRAM-SHA-512") \
     .option("kafka.sasl.jaas.config", getScramAuthString(username, password)) \
-    .load() \
-    .selectExpr("split(value, '\t')[0] AS marketplace"
-               ,"split(value, '\t')[1] AS customer_id"
-               ,"split(value, '\t')[2] AS review_id"
-               ,"split(value, '\t')[3] AS product_id"
-               ,"split(value, '\t')[4] AS product_parent"
-               ,"split(value, '\t')[5] AS product_title"
-               ,"split(value, '\t')[6] AS product_category"
-               ,"cast(split(value, '\t')[7] as int) AS star_rating"
-               ,"cast(split(value, '\t')[8] as int) AS helpful_votes"
-               ,"cast(split(value, '\t')[9] as int) AS total_votes"
-               ,"split(value, '\t')[10] AS vine"
-               ,"split(value, '\t')[11] AS verified_purchase"
-               ,"split(value, '\t')[12] AS review_headline"
-               ,"split(value, '\t')[13] AS review_body"
-               ,"split(value, '\t')[14] AS purchase_date") \
-    .withColumn("review_timestamp", current_timestamp())
+    .load()
 
 # Process the received data
-query = df \
-    .writeStream \
-    .outputMode("append") \
-    .format("parquet") \
-    .option("path", "s3a://hwe-tsagona/bronze/reviews") \
-    .option("checkpointLocation", "/tmp/kafka-checkpoint") \
-    .start()
+query = None
 
 # Wait for the streaming query to finish
 query.awaitTermination()

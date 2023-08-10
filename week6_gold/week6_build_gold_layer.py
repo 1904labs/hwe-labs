@@ -27,50 +27,17 @@ logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
-silver_schema = StructType([
-StructField("marketplace", StringType(), nullable=True)
-,StructField("customer_id", StringType(), nullable=True)
-,StructField("review_id", StringType(), nullable=True)
-,StructField("product_id", StringType(), nullable=True)
-,StructField("product_parent", StringType(), nullable=True)
-,StructField("product_title", StringType(), nullable=True)
-,StructField("product_category", StringType(), nullable=True)
-,StructField("star_rating", IntegerType(), nullable=True)
-,StructField("helpful_votes", IntegerType(), nullable=True)
-,StructField("total_votes", IntegerType(), nullable=True)
-,StructField("vine", StringType(), nullable=True)
-,StructField("verified_purchase", StringType(), nullable=True)
-,StructField("review_headline", StringType(), nullable=True)
-,StructField("review_body", StringType(), nullable=True)
-,StructField("purchase_date", StringType(), nullable=True)
-,StructField("review_timestamp", TimestampType(), nullable=True)
-,StructField("customer_name", StringType(), nullable=True)
-,StructField("gender", StringType(), nullable=True)
-,StructField("date_of_birth", StringType(), nullable=True)
-,StructField("city", StringType(), nullable=True)
-,StructField("state", StringType(), nullable=True)
-])
+silver_schema = None
 
 
-silver_data = spark.readStream \
-    .format("parquet") \
-    .schema(silver_schema) \
-    .load("s3a://hwe-tsagona/silver/reviews")
-silver_data.createOrReplaceTempView("silver_reviews")
+silver_data = None
 
-watermarked_data = silver_data \
-    .withWatermark("review_timestamp", "10 seconds") 
+watermarked_data = None
 
 # Perform the aggregation based on gender, state, star_rating, purchase_date, and product_title
-aggregated_data = watermarked_data \
-    .groupBy("gender", "state", "star_rating", "review_timestamp", "product_title") \
-    .agg(count("*").alias("total"))
+aggregated_data = None
 
-write_gold_query = aggregated_data \
-    .writeStream \
-    .format("parquet") \
-.option("path", "s3a://hwe-tsagona/gold/fact_review") \
-.option("checkpointLocation", "/tmp/gold-checkpoint")
+write_gold_query = None
 
 write_gold_query.start().awaitTermination()
 
