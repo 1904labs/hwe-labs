@@ -1,6 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import desc
-from pyspark.sql.functions import current_timestamp
 
 # Create a SparkSession
 spark = SparkSession.builder \
