@@ -28,9 +28,9 @@ Other tools we will use (VS Code, Git) are not as sensitive, and if you already 
 
 If you want the gory details of why we must run with:
 
-pyspark 3.1.3
-winutils 3.2.0
-aws-java-sdk-bundle 1.11.375
+- pyspark 3.1.3
+- winutils 3.2.0
+- aws-java-sdk-bundle 1.11.375
 
 Here is the link that explains:
 
