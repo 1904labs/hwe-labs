@@ -1,10 +1,7 @@
 from pyspark.sql import SparkSession
 
-# Create a SparkSession
-spark = SparkSession.builder \
-    .appName("Week2Lab") \
-    .master('local[*]') \
-    .getOrCreate()
+# Setup: Create a SparkSession
+spark = None
 
 #For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
 logger = spark.sparkContext._jvm.org.apache.log4j
@@ -39,4 +36,3 @@ logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level
 ##Print the date and total count of the date which had the most purchases.
 
 ## Stop the SparkSession
-spark.stop()
