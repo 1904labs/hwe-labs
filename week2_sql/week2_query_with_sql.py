@@ -1,6 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import desc
-from pyspark.sql.functions import current_timestamp
 
 # Create a SparkSession
 spark = SparkSession.builder \
@@ -13,14 +11,11 @@ logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
-#Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe.
-#You will write this dataframe to S3, register it with a name so that it can be used with Spark SQL , and use it to answer the same questions from the previous week using SQL
+#Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe. Call it "reviews".
 
-#Question 2: Create a table on top of the reviews directory matchiing the schema from the file.
+#Question 2: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
 
 #Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
-
-#Answer all questions below using Spark SQL instead of the Python API.
 
 ##Question 4: How many records are in the reviews dataframe? 
 
@@ -40,7 +35,7 @@ logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level
 #Create a new dataframe with just those 3 columns, except cast them as "int"s.
 #Look at 10 rows from this dataframe.
 
-##Question 9: Find the date with the most purchases.
+##Question 10: Find the date with the most purchases.
 ##Print the date and total count of the date which had the most purchases.
 
 ## Stop the SparkSession

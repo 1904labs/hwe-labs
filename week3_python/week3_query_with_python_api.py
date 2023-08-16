@@ -56,11 +56,11 @@ logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level
 #Question 9: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
 #Print the schema and inspect a few rows of data to make sure the data is correctly populated.
 
-#Question 10: Write the dataframe with load timestamp to s3a://hwe-HANDLE/bronze/reviews in Parquet format.
+#Question 10: Write the dataframe with load timestamp to s3a://hwe-$CLASS/$HANDLE/bronze/reviews_static in Parquet format.
 
 #Question 11: Read the tab separated file named "resources/customers.tsv.gz" into a dataframe
-#Write to S3 under s3a://BUCKET/path/bronze/customers
-#There are no questions to answer about this dat set right now, but you will use it in a later lab...
+#Write to S3 under s3a://hwe-$CLASS/$HANDLE/bronze/customers
+#There are no questions to answer about this data set right now, but you will use it in a later lab...
 
 # Stop the SparkSession
 spark.stop()
