@@ -1,6 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import desc
-from pyspark.sql.functions import current_timestamp
 
 # Create a SparkSession
 spark = SparkSession.builder \
@@ -13,19 +11,16 @@ logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
-#Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe.
-#You will write this dataframe to S3, register it with a name so that it can be used with Spark SQL , and use it to answer the same questions from the previous week using SQL
+#Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe. Call it "reviews".
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
-#Question 2: Create a table on top of the reviews directory matchiing the schema from the file.
+#Question 2: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
 reviews.createOrReplaceTempView("reviews")
 
 #Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
 with_review_timestamp = spark.sql("select r.*, current_timestamp() from reviews r")
 with_review_timestamp.printSchema()
 with_review_timestamp.show()
-
-#Answer all questions below using Spark SQL instead of the Python API.
 
 #For all questions, either approach to printing the answer is fine:
 #print(result.first()[0])
@@ -62,7 +57,7 @@ five_star_reviews.show()
 int_columns = spark.sql("select cast(star_rating as int), cast(helpful_votes as int), cast(total_votes as int) from reviews")
 int_columns.show(n=10)
 
-##Question 9: Find the date with the most purchases.
+##Question 10: Find the date with the most purchases.
 ##Print the date and total count of the date which had the most purchases.
 purchase_date_and_count = spark.sql("SELECT purchase_date, count(*) from reviews GROUP BY purchase_date ORDER BY count(*) DESC LIMIT 1")
 purchase_date_and_count.show()

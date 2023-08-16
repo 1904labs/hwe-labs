@@ -83,14 +83,14 @@ print(purchase_date_and_count.first())
 with_review_timestamp = reviews.withColumn("review_timestamp", current_timestamp())
 with_review_timestamp.printSchema()
 
-#Question 10: Write the dataframe with load timestamp to s3a://hwe-HANDLE/bronze/reviews in Parquet format.
+#Question 10: Write the dataframe with load timestamp to s3a://hwe-$CLASS/$HANDLE/bronze/reviews_static in Parquet format.
 with_review_timestamp.write \
    .mode("overwrite") \
-   .parquet("s3a://hwe-tsagona/bronze/reviews/")
+   .parquet("s3a://hwe-tsagona/bronze/reviews_static/")
 
 #Question 11: Read the tab separated file named "resources/customers.tsv.gz" into a dataframe
-#Write to S3 under s3a://BUCKET/path/bronze/customers
-#There are no questions to answer about this dat set right now, but you will use it in a later lab...
+#Write to S3 under s3a://hwe-$CLASS/$HANDLE/bronze/customers
+#There are no questions to answer about this data set right now, but you will use it in a later lab...
 customers = spark.read.csv("resources/customers.tsv.gz", sep="\t", header=True)
 customers.write \
     .mode("overwrite") \
