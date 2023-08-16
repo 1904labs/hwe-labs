@@ -5,8 +5,6 @@ from pyspark.sql.functions import current_timestamp
 # Create a SparkSession
 spark = SparkSession.builder \
     .appName("Week2Lab") \
-    .config("spark.sql.shuffle.partitions", "3") \
-    .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.3,org.apache.hadoop:hadoop-aws:3.2.0,com.amazonaws:aws-java-sdk-bundle:1.11.375') \
     .master('local[*]') \
     .getOrCreate()
 
