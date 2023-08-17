@@ -75,6 +75,7 @@ Find the `Path` environment variable, click `Edit`, and click `New` to add 2 ent
 |------------------------------------------------------------|
 |C:\Users\YOU\AppData\Local\Programs\Python\Python310        |
 |C:\Users\YOU\AppData\Local\Programs\Python\Python310\Scripts|
+|%HADOOP_HOME%\bin                                           |
 
 ## Setting up a virtual environment
 
