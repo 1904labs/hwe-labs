@@ -53,3 +53,6 @@ query = None
 
 # Wait for the streaming query to finish
 query.awaitTermination()
+
+# Stop the SparkSession
+spark.stop()
