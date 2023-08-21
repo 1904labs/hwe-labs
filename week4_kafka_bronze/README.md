@@ -14,12 +14,28 @@ This week, we're going to write a Python program that:
    * writes that data to S3
    * waits on the streaming query to terminate
 
+## Setting up AWS environment variables
+
+Note: from this point forward in the course, we will be connecting to various resources hosted on AWS. In order to successfully connect you will need to set several environment variables on your machine.
+
+Make sure these variables are updated before running your application.
+
+## Setting up Kafka environment variables
+
+We are going to be adding 3 new environment variables this week, which will allow you to connect to the HWE Kafka cluster, also hosted on AWS:
+
+   * HWE_BOOTSTRAP = the address of the HWE Kafka cluster
+   * HWE_USERNAME = the username used to authenticate to the HWE Kafka cluster (ask a TA)
+   * HWE_PASSWORD = the password used to authenticate to the HWE Kafka cluster (ask a TA)
+
+All of these values will be provided to you in person during the lecture. These values do not expire - once you set them, you are set for the duration of the course.
+
 ## Assignment
 
 ### Setup
 
 We will define Python variables which read the values of environment variables which need to be set to:
-   * HWE_BOOTSTRAP = the address of the HWE Kafka cluster
+   * HWE_BOOTSTRAP = the address of the HWE Kafka cluster (ask a TA)
    * HWE_USERNAME = the username used to authenticate to the HWE Kafka cluster (ask a TA)
    * HWE_PASSWORD = the password used to authenticate to the HWE Kafka cluster (ask a TA)
    * AWS_ACCESS_KEY_ID = the valid, recently acquired, temporary AWS access key for your IAM user
