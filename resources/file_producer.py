@@ -1,15 +1,15 @@
+import os
 from kafka import KafkaProducer
 import gzip
 
 # Kafka broker details
-bootstrap_servers = "b-2-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196,b-1-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196,b-3-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196"
-kafka_topic = "timsagona"
-username = "1904labs"
-password= "1904labs"
+bootstrap_servers = os.environ.get("HWE_BOOTSTRAP")
+username = os.environ.get("HWE_USERNAME")
+password = os.environ.get("HWE_PASSWORD")
 
 
 # Kafka topic to produce messages to
-topic = 'timsagona'
+topic = 'reviews'
 limit=5000
 
 # Create Kafka producer
