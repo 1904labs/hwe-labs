@@ -69,6 +69,7 @@ aggregated_data = watermarked_data \
 write_gold_query = aggregated_data \
     .writeStream \
     .format("parquet") \
+.option("outputMode", "append") \
 .option("path", "s3a://hwe-tsagona/gold/fact_review") \
 .option("checkpointLocation", "/tmp/gold-checkpoint")
 
