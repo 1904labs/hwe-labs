@@ -8,7 +8,7 @@ This week, we're going to write a Python program that:
    * reads in the bootstrap servers, username, and password from environment variables for a Kafka cluster hosted on AWS
    * creates a `SparkSession` object representing a connection to a local Spark cluster, with parameters that allow us to:
       * connect to S3
-      * use 3rd party jars/libraries to interact with S3
+      * use 3rd party jars/libraries to interact with S3 and Kafka
    * uses that `SparkSession` to read a stream of data from Kafka
    * reads and transforms data from Kafka
    * writes that data to S3
@@ -38,7 +38,7 @@ Modify the `df` dataframe defined in the lab to do the following:
 
    * split the value of the Kafka message on tab characters, assigning a field name to each element using the `as` keyword
    * append a column to the data named `review_timestamp` which is set to the current_timestamp
-   * write that data as Parquet files to S3 using append mode
+   * write that data as Parquet files to S3 under `s3a://hwe-$CLASS/$HANDLE/bronze/reviews` using append mode and a checkpoint location of `/tmp/kafka-checkpoint`
 
 ### Teardown
 We will wait on the query to terminate for you going forward.
