@@ -85,7 +85,6 @@ with_review_timestamp.printSchema()
 
 #Question 10: Write the dataframe with load timestamp to s3a://hwe-$CLASS/$HANDLE/bronze/reviews_static in Parquet format.
 #Make sure to write it using overwrite mode: append will keep appending duplicates, which will cause problems in later labs...
-<<<<<<< HEAD
 with_review_timestamp.write \
    .mode("overwrite") \
    .parquet("s3a://hwe-tsagona/bronze/reviews_static/")
