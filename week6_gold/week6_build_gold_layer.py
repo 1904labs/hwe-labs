@@ -56,7 +56,6 @@ silver_data = spark.readStream \
     .format("parquet") \
     .schema(silver_schema) \
     .load("s3a://hwe-tsagona/silver/reviews")
-silver_data.createOrReplaceTempView("silver_reviews")
 
 watermarked_data = silver_data \
     .withWatermark("review_timestamp", "10 seconds") 
