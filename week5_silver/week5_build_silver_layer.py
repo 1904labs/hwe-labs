@@ -86,7 +86,7 @@ silver_data = spark.sql("""
 streaming_query = silver_data.writeStream \
     .format("parquet") \
     .option("path", "s3a://hwe-tsagona/silver/reviews/") \
-    .option("outputMode", "replace") \
+    .option("outputMode", "append") \
     .option("checkpointLocation", "/tmp/silver-checkpoint")
 
 streaming_query.start().awaitTermination()
