@@ -8,7 +8,7 @@ This week, we're going to write a Python program that:
    * creates a `SparkSession` object representing a connection to a local Spark cluster, with parameters that allow us to:
       * connect to S3
       * use 3rd party jars/libraries to interact with S3
-   * defines a `Schema` object describing the layout of the Parquet silver review data on S3
+   * defines a `Schema` object describing the layout of the silver review data
    * defines a streaming dataframe from the S3 directory representing the silver layer review data 
    * adds a watermark to that streaming dataframe 
    * uses `groupBy` functionality to summarize that data over any dimensions you may find interesting
