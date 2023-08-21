@@ -27,16 +27,19 @@ logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
+#Define a Schema which describes the Parquet files under the silver reviews directory on S3
 silver_schema = None
 
-
+#Define a streaming dataframe using readStream on top of the silver reviews directory on S3
 silver_data = None
 
+#Define a watermarked_data dataframe by defining a watermark on the `review_timestamp` column with an interval of 10 seconds
 watermarked_data = None
 
-# Perform the aggregation based on gender, state, star_rating, purchase_date, and product_title
+#Define an aggregated dataframe using `groupBy` functionality to summarize that data over any dimensions you may find interesting
 aggregated_data = None
 
+#Write that aggregate data to S3 under s3a://hwe-$CLASS/$HANDLE/gold/fact_review using append mode and a checkpoint location of `/tmp/gold-checkpoint`
 write_gold_query = None
 
 write_gold_query.start().awaitTermination()
