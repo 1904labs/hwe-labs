@@ -1,14 +1,13 @@
+import os
 from kafka import KafkaProducer
 
 # Kafka broker details
-bootstrap_servers = "b-2-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196,b-1-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196,b-3-public.hwekafkacluster.6d7yau.c16.kafka.us-east-1.amazonaws.com:9196"
-kafka_topic = "timsagona"
-username = "1904labs"
-password= "1904labs"
-
+bootstrap_servers = os.environ.get("HWE_BOOTSTRAP")
+username = os.environ.get("HWE_USERNAME")
+password = os.environ.get("HWE_PASSWORD")
 
 # Kafka topic to produce messages to
-topic = 'timsagona'
+topic = 'kafka-connection-test'
 
 # Create Kafka producer
 producer = KafkaProducer(security_protocol="SASL_SSL",
@@ -18,7 +17,13 @@ producer = KafkaProducer(security_protocol="SASL_SSL",
                            bootstrap_servers=bootstrap_servers)
 
 # Define the message to be sent
-message = 'Hello from Python'
+message = 'Congratulations! You have successfully connected to the HWE Kafka cluster!'
+
+# Produce the message to the topic
+producer.send(topic, value=message.encode('utf-8'))
+
+# Define the message to be sent
+message = '(You can terminate this program at any time...)'
 
 # Produce the message to the topic
 producer.send(topic, value=message.encode('utf-8'))
