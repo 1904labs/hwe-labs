@@ -4,21 +4,26 @@ Note: It is possible you already have other/more recent versions of Python and J
 
 ## Installing Python
 
-Navigate to https://www.python.org/downloads/windows and find the "Windows installer (64-bit)" for 3.10.11.
+1. Navigate to the [V3.10.11 downloads page](https://www.python.org/downloads/release/python-31011/) and download "Windows installer (64-bit)" for 3.10.11
+<br/>OR<br/>directly [download the file through this link](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
+2. Run the executable and complete the Python installation process.
+3. After completion, there is one extra step you may need to take to make sure Python is working. By default, Windows will attempt to install Python from the Windows store instead of executing your program when `python` is executed from the command line. To fix this:
+    1. Type `Manage app execution aliases` in the Windows search bar
+    2. Make sure the 2 Python options are disabled:
+        * "App Installer/python.exe"
+        * "App Installer/python3.exe"
 
-![Alt text](install-python-windows-1.png)
+4. To test your Python installation, open a command prompt and type "python --version". You should be greeted with a Python command line prompt matching the version you just installed.
+```
+c:\Users\you>python --version
+3.10.11
+```
+Q: What if it doesnt work?<br/>
+A: If you have newer versions of Python installed you may see a higher version of Python reported.
 
-Download the 64 bit Microsoft installer. Run the executable to start the Python installation process.
-
-
-After completion, there is one extra step you may need to take to make sure Python is working. By default, Windows will attempt to install Python from the Windows store instead of executing your program when `python` is executed from the command line. To fix this:
-
-1. Type `Manage app execution aliases` in the Windows search bar
-2. Make sure the 2 Python options are disabled:
-    * "App Installer/python.exe"
-    * "App Installer/python3.exe"
-
-After this is complete, open a command prompt and type "python". You should be greeted with a Python command line prompt matching the version you just installed.
+Attempt these remedies and return to step 4 above:
+- Uninstall other versions of Python
+- Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
 
 ## Install Java 1.8
 Navigate to https://adoptium.net/download/:
