@@ -1,12 +1,14 @@
 # Hours with Experts - Week 1: Environment Setup
 
-To set up your environment, we are going to install:
+To set up your environment, we are going to install the following:
 
-* Python 3.10: must be exactly this version - [install instructions](week1_welcome/setup-windows.md#installing-python)
+* Python 3.10: must be exactly this version
 * Java 1.8: must be exactly this version
 * Git Bash: version is not important - can skip this if you already have it
 * WinUtils: Windows only
 * Visual Studio Code/"VS Code": version is not important - can skip this if you already have it 
+
+Follow these [instructions for Windows](setup-windows.md), and these [instuctions for Macs](setup-mac.md).
 
 Then set up:
 
