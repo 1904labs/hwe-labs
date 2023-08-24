@@ -1,30 +1,35 @@
 # Hours with Experts - Week 1: Environment Setup
 
-To set up your environment, we are going to install:
+To set up your development environment, we are going to install software and setup environment variables. To complete the environment setup:
 
-* Python 3.10: must be exactly this version
+- Follow these [instructions for Windows](setup-windows.md)
+- Follow these [instructions for Macs](setup-mac.md)
+
+## Environment Setup Overview
+The instructions linked above will configure the following software and environment settings. 
+
+### Environment Setup - Software
+* Python 3.10.11: must be exactly this version
 * Java 1.8: must be exactly this version
 * Git Bash: version is not important - can skip this if you already have it
 * WinUtils: Windows only
 * Visual Studio Code/"VS Code": version is not important - can skip this if you already have it 
 
-Then set up:
+Note: It is possible you already have other/more recent versions of Python and Java already on your computer (Java 1.8 came out in 2014!). However, it is very important to use exactly these versions: lots of data engineering projects were built off of Java 1.8, and these versions need to be compatible with the versions of the AWS libraries we will be using. You will encounter lots of errors - some obvious, some tricky ("UnsatisifedLinkError"? "ClassDefNotFound?") if your versions of Java, Python, and AWS libraries are not correctly in sync!  Other tools we will use (VS Code, Git) are not as sensitive, and if you already have these on your computer, whatever versions you have are likely fine.
+
+
+### Environment Setup - Environment variables
 
 * Environment variables relating to Java/Python/Spark
 * A Python virtual environment
 * VS Code
 
-And finally execute:
 
-* A  simple Spark program to make sure your environment on your computer is set up for Spark.
+### Environment Setup - Verification
+To verify your Spark environment is setup correctly, you will execute simple Spark program.
 
-Follow the setup instructions specific to your OS.
 
-Note: It is possible you already have other/more recent versions of Python and Java already on your computer (Java 1.8 came out in 2014!). However, it is very important to use exactly these versions: lots of data engineering projects were built off of Java 1.8, and these versions need to be compatible with the versions of the AWS libraries we will be using. You will encounter lots of errors - some obvious, some tricky ("UnsatisifedLinkError"? "ClassDefNotFound?") if your versions of Java, Python, and AWS libraries are not correctly in sync!
-
-Other tools we will use (VS Code, Git) are not as sensitive, and if you already have these on your computer, whatever versions you have are likely fine.
-
-### How to determine package versions
+### Environment Setup - Why so specific?
 
 If you want the gory details of why we must run with:
 
