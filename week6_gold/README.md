@@ -2,6 +2,8 @@
 
 ## Introduction
 
+**Important**: This lab is going to use watermarks, which is a feature of Spark that is not supported using Spark SQL. You *must* use the Spark DataFrame API to complete this lab!
+
 This week, we're going to write a Python program that:
 
    * reads in AWS credential information from environment variables which allows us to connect to S3
