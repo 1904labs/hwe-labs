@@ -6,7 +6,7 @@ Note: It is possible you already have other/more recent versions of Python and J
 
 1. Navigate to the [V3.10.11 downloads page](https://www.python.org/downloads/release/python-31011/) and download "Windows installer (64-bit)" for 3.10.11
 <br/>OR<br/>directly [download the file through this link](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
-2. Run the executable and complete the Python installation process.
+2. Run the executable and complete the Python installation process. Make sure "Add python.exe to PATH" is selected as an install option.
 3. After completion, there is one extra step you may need to take to make sure Python is working. By default, Windows will attempt to install Python from the Windows store instead of executing your program when `python` is executed from the command line. To fix this:
     1. Type `Manage app execution aliases` in the Windows search bar
     2. Make sure the 2 Python options are disabled:
@@ -52,24 +52,16 @@ OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
 2. Download the "64-bit Git for Windows Setup" installer and execute it.
 
 
-## WinUtils
-Next we will install the Windows binaries for Hadoop and setup environment variables using a Powershell script
-1. Change directory to this folder: `cd C:\<this-directory>`
-2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Hadoop.ps1`
+## Execute Configure-Environment.ps1 Script
+Next we will run a Powershell script from the command prompt to perform the following:
+- Download WinUtils: the Windows binaries for Hadoop
+- Setup environment variables using a Powershell script
+- Create a Python virtual environment
+- Install Python dependencies
 
-```
-# example output of success
-Cloning winutils repository to C:\Users\you\.winutils...
-Cloning into 'C:\Users\you\.winutils'...
-remote: Enumerating objects: 449, done.
-remote: Counting objects: 100% (63/63), done.
-remote: Compressing objects: 100% (39/39), done.
-remote: Total 449 (delta 27), reused 52 (delta 20), pack-reused 386 eceiving objects: 100% (449/449), 6.03 MiB | 540.00 KiB/s
-Receiving objects: 100% (449/449), 6.10 MiB | 690.00 KiB/s, done.
-Resolving deltas: 100% (320/320), done.
-```
-Clone the `winutils` repo:
-`git clone https://github.com/cdarlint/winutils`
+Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
+1. Change directory to this folder: `cd C:\<this-directory>`
+2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
 
 ## Visual Studio Code
 
@@ -80,58 +72,20 @@ Under the Default Powershell execution policy, your programs will execute succes
 1. Open Powershell as an Adminstrator
 2. Execute the following command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
 
-
-## Set up environment variables:
-To edit Windows environment variables, type `env` in the Windows search bar, and click either `New` or `Edit` in the top/`User Variables` section.
-
-Note: Any time you change an environment variable, you should close/re-open any DOS prompt or VS Code window to pick up the new changes.
-
-### Create or replace these variables
-
-|Variable Name |Value                                                          |
-|--------------|---------------------------------------------------------------|
-|SPARK_HOME    |C:\Users\YOU\hwe\Lib\site-packages\pyspark                     |
-|PYSPARK_PYTHON|C:\Users\YOU\AppData\Local\Programs\Python\Python310\python.exe|
-|HADOOP_HOME   |C:\Users\YOU\winutils\hadoop-3.2.0                             |
-|JAVA_HOME     |C:\Program Files\Zulu\zulu-8                                   |
-
-### Append these entries to your Path
-Find the `Path` environment variable, click `Edit`, and click `New` to add 2 entries:
-
-|New Path Entries                                            |
-|------------------------------------------------------------|
-|C:\Users\YOU\AppData\Local\Programs\Python\Python310        |
-|C:\Users\YOU\AppData\Local\Programs\Python\Python310\Scripts|
-|%HADOOP_HOME%\bin                                           |
-
-## Setting up a virtual environment
-
-All commands below should be executed from a DOS command prompt:
-
-```
-cd C:\Users\YOU
-pip install virtualenv
-python -m virtualenv hwe
-hwe\Scripts\activate
-cd hwe-labs
-pip install -r resources/requirements.txt
-```
-
-Note: The last step will take several minutes - pyspark is a large download with a lot of dependencies.
-
 ## Configure VS Code to use your virtual environment
 
-Open VS Code, Select `File\Open Folder`, navigate to your `C:\Users\YOU` directory, click once on `hwe-labs` to highlight it (don't double click to enter it!), then click the `Select Folder` button.
+Open VS Code, Select `File\Open Folder`, navigate to your `hwe-labs` repo directory, click once on `hwe-labs` to highlight it (don't double click to enter it!), then click the `Select Folder` button.
 
 On the left side explorer panel, double click on `week1_welcome\spark_installation_test.py`.
 
 In the bottom right corner, next to the word `Python`, it should say something like `3.10.11 64-bit`. Change the interpreter to the one located in your virtual environment by doing the following:
 
-* Click on the text box with `3.10.11 64-bit`
+* Click on the text box with `3.10.11 64-bit` (or possibly a different version if prior Python versions have been installed)
 * Click on the text box saying `+ Enter Interpreter Path`
 * Click on the text box saying `Find...`
-* Browse your file system to find `C:\Users\YOU\hwe\Scripts`
-* Click once to highlight (but don't double click!) `python` (it should have an icon of a DOS prompt)
+* Browse your file system to find `C:\Users\YOU\.hwe_venv\Scripts`
+* Click once to highlight (but don't double click!) `python.exe` (it should have an icon of a DOS prompt)
+    * Example: my path is `C:\Users\nick\.hwe_venv\Scripts\python.exe`
 * Click `Select Interpreter` to choose that executable
 
 ## Test your environment
