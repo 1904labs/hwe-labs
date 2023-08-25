@@ -53,14 +53,14 @@ OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
 
 
 ## Execute Configure-Environment.ps1 Script
-Next we will run a Powershell script from the command prompt to perform the following:
+Next we will run a Powershell script from the command prompt which performs the following:
 - Download WinUtils: the Windows binaries for Hadoop
 - Setup environment variables using a Powershell script
 - Create a Python virtual environment
 - Install Python dependencies
 
 Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
-1. Change directory to this folder: `cd C:\<this-directory>`
+1. Change directory to this folder: `cd <this-directory>`
 2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
 
 ## Visual Studio Code
