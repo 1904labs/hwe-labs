@@ -2,7 +2,7 @@
 
 Note: It is possible you already have other/more recent versions of Python and Java already on your computer (Java 1.8 came out in 2014!). However, it is very important to have exactly these versions: lots of data engineering projects were built off of Java 1.8, and you will encounter lots of errors (some obvious, some tricky) if your versions of Java, Python, and AWS libraries are not correctly in sync!
 
-## Installing Python
+## Install Python
 
 1. Navigate to the [V3.10.11 downloads page](https://www.python.org/downloads/release/python-31011/) and download "Windows installer (64-bit)" for 3.10.11
 <br/>OR<br/>directly [download the file through this link](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
@@ -19,33 +19,55 @@ c:\Users\you>python --version
 3.10.11
 ```
 Q: What if it doesnt work?<br/>
-A: If you have newer versions of Python installed you may see a higher version of Python reported.
+A: If you have other versions of Python installed you may see a different version of Python reported.
 
 Attempt these remedies and return to step 4 above:
 - Uninstall other versions of Python
 - Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
 
 ## Install Java 1.8
-Navigate to https://adoptium.net/download/:
+1. Navigate to the adoptium.net downloads page using [this link which will preconfigure the download filters](https://adoptium.net/temurin/releases/?os=windows&arch=x64&package=jdk&version=8). After navigating to the page you should see these settings selected:
+    - Operating System = Windows
+    - Architecture = x64
+    - Package Type = JDK
+    - Version = 8 - LTS
 
-Filter on:
-* Operating System = Windows
-* Architecture = x64
-* Package Type = JDK
-* Version = 8 - LTS
+2. Download and execute the .msi Zulu Microsoft Installer.
 
-Download the and execute Zulu Microsoft Installer (msi).
+3. Make sure the following options are set:
+    - Add to PATH
+    - Set JAVA_HOME variable
 
-Make sure the options about updating your PATH and setting JAVA_HOME are set.
+4. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
+```
+C:\Users\you>java -version
+openjdk version "1.8.0_382"
+OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
+OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
+```
 
-After installation is complete, close any existing command/DOS prompts and open a brand new command prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
 
 ## Git Bash
+1. Navigate to the [Git-scm website Windows download page](https://git-scm.com/download/win)
+2. Download the "64-bit Git for Windows Setup" installer and execute it.
 
-TODO, should be straightforward
 
 ## WinUtils
+Next we will install the Windows binaries for Hadoop and setup environment variables using a Powershell script
+1. Change directory to this folder: `cd C:\<this-directory>`
+2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Hadoop.ps1`
 
+```
+# example output of success
+Cloning winutils repository to C:\Users\you\.winutils...
+Cloning into 'C:\Users\you\.winutils'...
+remote: Enumerating objects: 449, done.
+remote: Counting objects: 100% (63/63), done.
+remote: Compressing objects: 100% (39/39), done.
+remote: Total 449 (delta 27), reused 52 (delta 20), pack-reused 386 eceiving objects: 100% (449/449), 6.03 MiB | 540.00 KiB/s
+Receiving objects: 100% (449/449), 6.10 MiB | 690.00 KiB/s, done.
+Resolving deltas: 100% (320/320), done.
+```
 Clone the `winutils` repo:
 `git clone https://github.com/cdarlint/winutils`
 
