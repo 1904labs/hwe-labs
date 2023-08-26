@@ -1,9 +1,14 @@
 <#
 .SYNOPSIS
-TODO -- fill this in
+Automates many parts of the HWE Windows development environment setup.
 
 .DESCRIPTION
-TODO -- fill this in
+Automates many parts of the HWE Windows development environment setup. The main steps include:
+- Cloning Hadoop binaries for Windows and setting up HADOOP_HOME env variable
+- Ensuring Java version 1.8.* is installed along with having the JAVA_HOME env variable set
+- Creating a Python virtual environment via Python's pip
+- Download HWE course Python dependencies like Pyspark
+- Configuring additional env variables for Python, Spark, etc
 
 .PARAMETER None
 
@@ -44,14 +49,30 @@ if (-Not (Test-Path $hadoopHome)) {
 [Environment]::SetEnvironmentVariable("HADOOP_HOME", $hadoopHome, [EnvironmentVariableTarget]::User)
 Write-Host "== Set HADOOP_HOME env variable to '$hadoopHome'" -ForegroundColor Green
 
-$javaHome = "C:\Program Files\Java\jre1.8.0_361"
-if (-Not (Test-Path $javaHome)) {
-    # otherwise we are done
-    Write-Host "== Java install didnt exist at '$javaHome', exiting..."  -ForegroundColor Red
+$javaHome = $env:JAVA_HOME
+if (($null -eq $javaHome) -or ($javaHome -eq ""))
+{
+    Write-Host "== JAVA_HOME env variable not set. Attempt running installer " + `
+            "with 'Set JAVA_HOME variable' option set, exiting..." -ForegroundColor Red
     return
+} elseif (-Not (Test-Path $javaHome)) {
+    Write-Host "== Java install didnt exist at env variable JAVA_HOME = '$javaHome', exiting..." -ForegroundColor Red
+    return
+} else {
+    Write-Host "== Found JAVA_HOME env variable set to '$javaHome'" -ForegroundColor Green
+
+    # look for the expected Java version
+    $javaVersion = java.exe -version 2>&1 | %{ "$_" }
+    $javaVersion -join "`r`n" | Out-String
+    if (-Not ([bool]($javaVersion -match "`"1.8.")))
+    {
+        Write-Host "== Java version doesnt report '1.8.*', exiting..." -ForegroundColor Red
+        return
+    }
+    else {
+        Write-Host "== Java version reports '1.8.*'" -ForegroundColor Green
+    }
 }
-[Environment]::SetEnvironmentVariable("JAVA_HOME", $javaHome, [EnvironmentVariableTarget]::User)
-Write-Host "== Set JAVA_HOME env variable to '$javaHome'" -ForegroundColor Green
 
 $virtualEnv = "$env:USERPROFILE\.hwe_venv" 
 if (Test-Path $virtualEnv)
@@ -79,7 +100,6 @@ if (-Not (Test-Path $pysparkPython)) {
 [Environment]::SetEnvironmentVariable("PYSPARK_PYTHON", $pysparkPython, [EnvironmentVariableTarget]::User)
 Write-Host "== Set PYSPARK_PYTHON env variable to '$pysparkPython'" -ForegroundColor Green
 
-# SPARK_HOME	C:\Users\YOU\hwe\Lib\site-packages\pyspark
 $sparkHome = "$virtualEnv\Lib\site-packages\pyspark"
 if (-Not (Test-Path $sparkHome)) {
     # otherwise we are done
@@ -91,8 +111,8 @@ Write-Host "== Set SPARK_HOME env variable to '$sparkHome'" -ForegroundColor Gre
 
 # check and add missing items to PATH variable
 $pathItems = @("$env:USERPROFILE\AppData\Local\Programs\Python\Python310", `
-"$env:USERPROFILE\AppData\Local\Programs\Python\Python310\Scripts", `
-"$hadoopHome\bin")
+                "$env:USERPROFILE\AppData\Local\Programs\Python\Python310\Scripts", `
+                "$hadoopHome\bin")
 foreach ($pathItem in $pathItems) {
     if (-Not (Test-Path $pathItem))
     {

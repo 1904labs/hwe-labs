@@ -32,13 +32,11 @@ Attempt these remedies and return to step 4 above:
     - Package Type = JDK
     - Version = 8 - LTS
 
-2. Download and execute the .msi Zulu Microsoft Installer.
-
-3. Make sure the following options are set:
+2. Download and execute the .msi Eclipse Temurin Installer with the following options set:
     - Add to PATH
     - Set JAVA_HOME variable
 
-4. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
+3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
 ```
 C:\Users\you>java -version
 openjdk version "1.8.0_382"
