@@ -37,5 +37,7 @@ Create a `SparkSession` object representing a connection to a local Spark cluste
 
 10. Find the date with the most purchases. Print the date and total count of the date which had the most purchases.
 
+11. Write the dataframe from Question 3 to your drive in JSON format. Feel free to pick any directory on your computer.
+
 ### Teardown 
 Stop the `SparkSession`
