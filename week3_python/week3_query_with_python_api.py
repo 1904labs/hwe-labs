@@ -54,6 +54,7 @@ logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level
 #Print the date and total count of the date with the most purchases
 
 #Question 9: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
+#Hint: Check the documentation for a function that can help: https://spark.apache.org/docs/3.1.3/api/python/reference/pyspark.sql.html#functions
 #Print the schema and inspect a few rows of data to make sure the data is correctly populated.
 
 #Question 10: Write the dataframe with load timestamp to s3a://hwe-$CLASS/$HANDLE/bronze/reviews_static in Parquet format.
