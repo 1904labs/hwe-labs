@@ -79,6 +79,7 @@ print(purchase_date_and_count.first())
 
 
 #Question 9: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
+#Hint: Check the documentation for a function that can help: https://spark.apache.org/docs/3.1.3/api/python/reference/pyspark.sql.html#functions
 #Print the schema and inspect a few rows of data to make sure the data is correctly populated.
 with_review_timestamp = reviews.withColumn("review_timestamp", current_timestamp())
 with_review_timestamp.printSchema()
