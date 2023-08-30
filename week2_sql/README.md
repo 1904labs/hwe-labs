@@ -1,16 +1,16 @@
 # Hours with Experts - Week 2: Spark using SQL
 
-## Introduction
+## Assignment Instructions
 
 This week, we're going to write a Python program that:
 
    * creates a `SparkSession` object representing a connection to a local Spark cluster
-   * uses that `SparkSession` to reads in a local file containing (real) Amazon review data
+   * uses that `SparkSession` to read a local file containing (real) Amazon review data
    * defines a virtual view we can query using Spark SQL
    * uses that view to answer questions about the data
    * stops our `SparkSession`
 
-## Assignment
+All of the following sections in this README can be found in 'week2_query_with_sql.py'.  Your assignment is to go through the following sections in '[week2_query_with_sql.py](week2_query_with_sql.py)' and write the code to complete the task for the corresponding comment.
 
 ### Setup 
 Create a `SparkSession` object representing a connection to a local Spark cluster

@@ -40,3 +40,15 @@ If you want the gory details of why we must run with:
 Here is the link that explains:
 
 https://github.com/chriscugliotta/pyspark-s3-windows
+
+# Week 1 Video Further Reading Links
+
+[Medallion Architecture](https://dataengineering.wiki/Concepts/Medallion+Architecture)
+
+[Kafka]
+
+[Apache Spark]
+
+[Amazon S3]
+
+[Apache Superset]
