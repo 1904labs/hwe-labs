@@ -64,6 +64,10 @@ purchase_date_and_count.show()
 
 ##Question 11: Write the dataframe from Question 3 to your drive in JSON format.
 ##Feel free to pick any directory on your computer.
+##Use overwrite mode.
+with_review_timestamp.write \
+.mode("overwrite") \
+.json("resources/tim_json")
 
 ## Stop the SparkSession
 spark.stop()
