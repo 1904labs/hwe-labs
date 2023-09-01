@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This week, we're going to write a Python program that:
+This week, we're going to write a Python program that uses Spark SQL (not the DataFrame API):
 
    * reads in AWS credential information from environment variables which allows us to connect to S3
    * creates a `SparkSession` object representing a connection to a local Spark cluster, with parameters that allow us to:
