@@ -36,7 +36,7 @@ Attempt these remedies and return to step 4 above:
     - Add to PATH
     - Set JAVA_HOME variable
 
-3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
+3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 is installed.
 ```
 C:\Users\you>java -version
 openjdk version "1.8.0_382"
