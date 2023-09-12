@@ -16,12 +16,12 @@
 c:\Users\you>python --version
 3.10.11
 ```
-Q: What if it doesnt work?<br/>
+Q: What if it doesnt work?
 A: If you have other versions of Python installed you may see a different version of Python reported.
 
 Attempt these remedies and return to step 4 above:
-    - Uninstall other versions of Python
-- Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
+   - Uninstall other versions of Python
+   - Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
 
 ## Install Java 1.8
     1. Navigate to the adoptium.net downloads page using [this link which will preconfigure the download filters](https://adoptium.net/temurin/releases/?os=windows&arch=x64&package=jdk&version=8). After navigating to the page you should see these settings selected:
