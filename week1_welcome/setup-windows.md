@@ -24,53 +24,52 @@ Attempt these remedies and return to step 4 above:
    - Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
 
 ## Install Java 1.8
-    1. Navigate to the adoptium.net downloads page using [this link which will preconfigure the download filters](https://adoptium.net/temurin/releases/?os=windows&arch=x64&package=jdk&version=8). After navigating to the page you should see these settings selected:
+
+1. Navigate to the adoptium.net downloads page using [this link which will preconfigure the download filters](https://adoptium.net/temurin/releases/?os=windows&arch=x64&package=jdk&version=8). After navigating to the page you should see these settings selected:
     - Operating System = Windows
     - Architecture = x64
     - Package Type = JDK
     - Version = 8 - LTS
 
-    2. Download and execute the .msi Eclipse Temurin Installer with the following options set:
+2. Download and execute the .msi Eclipse Temurin Installer with the following options set:
     - Add to PATH
     - Set JAVA_HOME variable
 
-    3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 is installed.
+3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 is installed.
     ```
     C:\Users\you>java -version
     openjdk version "1.8.0_382"
     OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
-OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
+    OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
     ```
 
 
 ## Git Bash
-    1. Navigate to the [Git-scm website Windows download page](https://git-scm.com/download/win)
-    2. Download the "64-bit Git for Windows Setup" installer and execute it.
+1. Navigate to the [Git-scm website Windows download page](https://git-scm.com/download/win)
+2. Download the "64-bit Git for Windows Setup" installer and execute it.
 
 
 ## Execute Configure-Environment.ps1 Script
 
-    Using Git Bash you installed above, clone the main branch of this reposiory.
+Using Git Bash you installed above, clone the main branch of this reposiory.
 
-    ```
     cd <folder>
     git clone https://github.com/1904labs/hwe-labs.git
+    
+Next we will run a Powershell script from the command prompt which performs the following:
+   - Download WinUtils: the Windows binaries for Hadoop
+   - Setup environment variables using a Powershell script
+   - Create a Python virtual environment
+   - Install Python dependencies
 
-    ```
-    Next we will run a Powershell script from the command prompt which performs the following:
-    - Download WinUtils: the Windows binaries for Hadoop
-    - Setup environment variables using a Powershell script
-    - Create a Python virtual environment
-    - Install Python dependencies
-
-    Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
-    1. Change directory to this folder: `cd <folder>/hwe-labs/week1_welcome`
-    2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
+   Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
+   1. Change directory to this folder: `cd <folder>/hwe-labs/week1_welcome`
+   2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
 
 ## Visual Studio Code
 
-    1. Navigate to the [VS Code download page](https://code.visualstudio.com/download)
-    2. Click on the Windows 10/11 download to download the .exe and run it.h=
+   1. Navigate to the [VS Code download page](https://code.visualstudio.com/download)
+   2. Click on the Windows 10/11 download to download the .exe and run it.h=
 
 ## Modify Powershell execution policy
 Under the Default Powershell execution policy, your programs will execute successfully but the output will be hard to read. To make the output easier:
