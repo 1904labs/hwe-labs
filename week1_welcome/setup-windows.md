@@ -83,6 +83,8 @@ Open VS Code, Select `File\Open Folder`, navigate to your `hwe-labs` repo direct
 
 On the left side explorer panel, double click on `week1_welcome\spark_installation_test.py`.
 
+If you don't have the Python Extension installed, please do so by clicking on the 'Extensions' icon and install the extension from Microsoft.
+
 In the bottom right corner, next to the word `Python`, it should say something like `3.10.11 64-bit`. Change the interpreter to the one located in your virtual environment by doing the following:
 
 * Click on the text box with `3.10.11 64-bit` (or possibly a different version if prior Python versions have been installed)
