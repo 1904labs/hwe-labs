@@ -9,7 +9,7 @@ This week, we're going to write a Python program that:
       * connect to S3
       * use 3rd party jars/libraries to interact with S3
    * uses that `SparkSession` to reads in a local file containing (real) Amazon review data
-   * queries that data using the Python Spark SQL API
+   * queries that data using the Python Spark DataFrame API (opposed to the SQL API)
    * writes that data to S3
    * stops our `SparkSession`
 
@@ -52,6 +52,8 @@ We will define Python variables which read the values of environment variables w
 We will define the `SparkSession` for you going forward, since some of the parameters get complex from here.
 
 ### Questions
+
+Remember, this week we are using the Spark DataFrame API (and last week was the Spark SQL API).
 
 1. Read the tab separated file named `resources/reviews.tsv.gz` into a dataframe. Call it `reviews`. You will use the `reviews` dataframe defined here to answer all the questions below...
 

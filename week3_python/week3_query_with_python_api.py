@@ -26,6 +26,10 @@ logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
+### Questions
+
+# Remember, this week we are using the Spark DataFrame API (and last week was the Spark SQL API).
+
 #Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe.
 #You will use the "reviews" dataframe defined here to answer all the questions below...
 
