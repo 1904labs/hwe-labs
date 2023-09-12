@@ -66,15 +66,16 @@ Next we will run a Powershell script from the command prompt which performs the 
    1. Change directory to this folder: `cd <folder>/hwe-labs/week1_welcome`
    2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
 
-## Visual Studio Code
-
-   1. Navigate to the [VS Code download page](https://code.visualstudio.com/download)
-   2. Click on the Windows 10/11 download to download the .exe and run it.h=
-
 ## Modify Powershell execution policy
+
 Under the Default Powershell execution policy, your programs will execute successfully but the output will be hard to read. To make the output easier:
 1. Open Powershell as an Adminstrator
 2. Execute the following command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
+
+## Visual Studio Code
+
+   1. Navigate to the [VS Code download page](https://code.visualstudio.com/download)
+   2. Click on the Windows 10/11 download to download the .exe and run it.
 
 ## Configure VS Code to use your virtual environment
 
