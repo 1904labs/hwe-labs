@@ -1,31 +1,30 @@
 # Windows Setup Instructions
 
-Note: It is possible you already have other/more recent versions of Python and Java already on your computer (Java 1.8 came out in 2014!). However, it is very important to have exactly these versions: lots of data engineering projects were built off of Java 1.8, and you will encounter lots of errors (some obvious, some tricky) if your versions of Java, Python, and AWS libraries are not correctly in sync!
-
 ## Install Python
 
 1. Navigate to the [V3.10.11 downloads page](https://www.python.org/downloads/release/python-31011/) and download "Windows installer (64-bit)" for 3.10.11
 <br/>OR<br/>directly [download the file through this link](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
 2. Run the executable and complete the Python installation process. Make sure "Add python.exe to PATH" is selected as an install option.
 3. After completion, there is one extra step you may need to take to make sure Python is working. By default, Windows will attempt to install Python from the Windows store instead of executing your program when `python` is executed from the command line. To fix this:
-    1. Type `Manage app execution aliases` in the Windows search bar
-    2. Make sure the 2 Python options are disabled:
-        * "App Installer/python.exe"
-        * "App Installer/python3.exe"
+1. Type `Manage app execution aliases` in the Windows search bar
+2. Make sure the 2 Python options are disabled:
+* "App Installer/python.exe"
+* "App Installer/python3.exe"
 
 4. To test your Python installation, open a command prompt and type "python --version". You should be greeted with a Python command line prompt matching the version you just installed.
 ```
 c:\Users\you>python --version
 3.10.11
 ```
-Q: What if it doesnt work?<br/>
+Q: What if it doesnt work?
 A: If you have other versions of Python installed you may see a different version of Python reported.
 
 Attempt these remedies and return to step 4 above:
-- Uninstall other versions of Python
-- Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
+   - Uninstall other versions of Python
+   - Remove conflicting PATH entries (dont forget to restart your command prompt before outputting the Python version again)
 
 ## Install Java 1.8
+
 1. Navigate to the adoptium.net downloads page using [this link which will preconfigure the download filters](https://adoptium.net/temurin/releases/?os=windows&arch=x64&package=jdk&version=8). After navigating to the page you should see these settings selected:
     - Operating System = Windows
     - Architecture = x64
@@ -36,13 +35,13 @@ Attempt these remedies and return to step 4 above:
     - Add to PATH
     - Set JAVA_HOME variable
 
-3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 (Zulu) is installed.
-```
-C:\Users\you>java -version
-openjdk version "1.8.0_382"
-OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
-OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
-```
+3. To test your Java installation, open a new command/DOS prompt (do not re-use an existing one), and type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 is installed.
+    ```
+    C:\Users\you>java -version
+    openjdk version "1.8.0_382"
+    OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
+    OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
+    ```
 
 
 ## Git Bash
@@ -51,30 +50,40 @@ OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
 
 
 ## Execute Configure-Environment.ps1 Script
+
+Using Git Bash you installed above, clone the main branch of this reposiory.
+
+    cd <folder>
+    git clone https://github.com/1904labs/hwe-labs.git
+    
 Next we will run a Powershell script from the command prompt which performs the following:
-- Download WinUtils: the Windows binaries for Hadoop
-- Setup environment variables using a Powershell script
-- Create a Python virtual environment
-- Install Python dependencies
+   - Download WinUtils: the Windows binaries for Hadoop
+   - Setup environment variables using a Powershell script
+   - Create a Python virtual environment
+   - Install Python dependencies
 
-Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
-1. Change directory to this folder: `cd <this-directory>`
-2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
-
-## Visual Studio Code
-
-TODO, should be straightforward
+   Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
+   1. Change directory to this folder: `cd <folder>/hwe-labs/week1_welcome`
+   2. Execute the script: `powershell.exe -ExecutionPolicy Bypass -File Configure-Environment.ps1`
 
 ## Modify Powershell execution policy
+
 Under the Default Powershell execution policy, your programs will execute successfully but the output will be hard to read. To make the output easier:
 1. Open Powershell as an Adminstrator
 2. Execute the following command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
+
+## Visual Studio Code
+
+   1. Navigate to the [VS Code download page](https://code.visualstudio.com/download)
+   2. Click on the Windows 10/11 download to download the .exe and run it.
 
 ## Configure VS Code to use your virtual environment
 
 Open VS Code, Select `File\Open Folder`, navigate to your `hwe-labs` repo directory, click once on `hwe-labs` to highlight it (don't double click to enter it!), then click the `Select Folder` button.
 
 On the left side explorer panel, double click on `week1_welcome\spark_installation_test.py`.
+
+If you don't have the Python Extension installed, please do so by clicking on the 'Extensions' icon and install the extension from Microsoft.
 
 In the bottom right corner, next to the word `Python`, it should say something like `3.10.11 64-bit`. Change the interpreter to the one located in your virtual environment by doing the following:
 
