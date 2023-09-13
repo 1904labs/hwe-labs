@@ -34,7 +34,9 @@ We will define the `SparkSession` for you, since some of the parameters get comp
 3. Register a virtual view on top of that dataframe
 4. Define a non-streaming dataframe using `read` on top of the bronze customers directory on S3
 5. Register a virtual view on top of that dataframe
-6. Define a `silver_data` dataframe by joining the review and customer data on their common key of `customer_id`
+6. Define a `silver_data` dataframe by:
+   * joining the review and customer data on their common key of `customer_id`
+   * apply a business validation rule to prevent unverified reviews in the bronze layer from being loaded into the silver layer
 7. Write that silver data to S3 under `s3a://hwe-$CLASS/$HANDLE/silver/reviews` using append mode and a checkpoint location of `/tmp/silver-checkpoint`
 
 ### Teardown
