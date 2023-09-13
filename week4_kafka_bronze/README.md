@@ -55,6 +55,14 @@ Modify the `df` dataframe defined in the lab to do the following:
    * split the value of the Kafka message on tab characters, assigning a field name to each element using the `as` keyword
    * append a column to the data named `review_timestamp` which is set to the current_timestamp
    * write that data as Parquet files to S3 under `s3a://hwe-$CLASS/$HANDLE/bronze/reviews` using append mode and a checkpoint location of `/tmp/kafka-checkpoint`
+   
+Outside of this program, create a table on top of your S3 data in Athena, and run some queries against your data to validate it is coming across the way you expect. Some useful fields to validate could include:
+
+   * product_title
+   * star_rating
+   * review_timestamp
+
+GROUP BY and LIMIT are also useful here.
 
 ### Teardown
 We will wait on the query to terminate for you going forward.

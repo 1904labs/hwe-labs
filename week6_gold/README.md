@@ -14,7 +14,7 @@ This week, we're going to write a Python program that:
    * defines a streaming dataframe from the S3 directory representing the silver layer review data 
    * adds a watermark to that streaming dataframe 
    * uses `groupBy` functionality to summarize that data over any dimensions you may find interesting
-   * creates a gold layer by saving that data as Parquet files to S3
+   * creates a gold layer by saving that data to S3 using "delta" format
 
 ## Assignment
 
@@ -33,7 +33,8 @@ We will define the `SparkSession` for you, since some of the parameters get comp
 2. Define a streaming dataframe using `readStream` on top of the silver reviews directory on S3
 3. Define a `watermarked_data` dataframe by defining a watermark on the `review_timestamp` column with an interval of 10 seconds
 4. Define an aggregated dataframe using `groupBy` functionality to summarize that data over any dimensions you may find interesting
-5. Write that aggregate data to S3 under `s3a://hwe-$CLASS/$HANDLE/gold/fact_review` using append mode and a checkpoint location of `/tmp/gold-checkpoint`
+5. Write that aggregate data to S3 under `s3a://hwe-$CLASS/$HANDLE/gold/fact_review` using append mode, a checkpoint location of `/tmp/gold-checkpoint`, and a format of `delta`
+6. Outside of this program, create a table on top of your S3 data in Athena, and run some queries against your data to validate it is coming across the way you expect. Since you get to choose what your gold layer table will look like, you get to decide what fields are necessary to validate!
 
 ### Teardown
 We will wait on the query to terminate for you going forward.
