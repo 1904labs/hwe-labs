@@ -38,6 +38,17 @@ We will define the `SparkSession` for you, since some of the parameters get comp
    * joining the review and customer data on their common key of `customer_id`
    * apply a business validation rule to prevent unverified reviews in the bronze layer from being loaded into the silver layer
 7. Write that silver data to S3 under `s3a://hwe-$CLASS/$HANDLE/silver/reviews` using append mode and a checkpoint location of `/tmp/silver-checkpoint`
+8. Outside of this program, create a table on top of your S3 data in Athena, and run some queries against your data to validate it is coming across the way you expect. Some useful fields to validate could include:
+
+   * product_title
+   * star_rating
+   * review_timestamp
+   * customer_name
+   * gender
+   * city
+   * state
+
+GROUP BY and LIMIT are also useful here.
 
 ### Teardown
 We will wait on the query to terminate for you going forward.
