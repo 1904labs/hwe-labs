@@ -6,7 +6,7 @@ from pyspark.sql.types import StringType, StructType, StructField
 spark = SparkSession.builder.master("local[1]").appName("SparkInstallationTest").getOrCreate()
 
 # Define the data
-data = [("Congratulations! The first Spark program is executing!",),("(This program will run untl you terminate it...)",)]
+data = [("Congratulations! The first Spark program is executing!",),("(This program will run until you terminate it...)",)]
 
 # Define the schema for the DataFrame
 #schema = StringType()
