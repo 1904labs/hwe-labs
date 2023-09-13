@@ -81,6 +81,7 @@ silver_data = spark.sql("""
     from bronze_reviews r
           inner join bronze_customers c
           on r.customer_id = c.customer_id
+          where r.verified_purchase = 'Y'
     """)
 
 streaming_query = silver_data.writeStream \
