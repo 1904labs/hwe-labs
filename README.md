@@ -2,7 +2,7 @@
 ![Hours with Experts logo](resources/images/hwe_logo_480x444.jfif)
 
 # Welcome to the Hours With Experts Labs Repo
-This reposority will be the central location for the labs -- the hands-on programming component of the course.
+This repository will be the central location for the hands-on programming component of the course.
 
 ## Course Work Overview
 
