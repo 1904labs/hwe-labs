@@ -1,16 +1,17 @@
 from pyspark.sql import SparkSession
 
-# Create a SparkSession
+### Setup: Create a SparkSession
 spark = SparkSession.builder \
     .appName("Week2Lab") \
     .master('local[*]') \
     .getOrCreate()
 
-#For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
+# For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
 logger = spark.sparkContext._jvm.org.apache.log4j
 logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
+### Questions
 #Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe. Call it "reviews".
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
