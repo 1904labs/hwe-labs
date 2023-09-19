@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This week, we're going to write a Python program that:
+This week, we're going to write a Python program that uses Spark SQL (not the DataFrame API):
 
    * reads in AWS credential information from environment variables which allows us to connect to S3
    * creates a `SparkSession` object representing a connection to a local Spark cluster, with parameters that allow us to:
@@ -36,8 +36,8 @@ We will define the `SparkSession` for you, since some of the parameters get comp
 5. Register a virtual view on top of that dataframe
 6. Define a `silver_data` dataframe by:
    * joining the review and customer data on their common key of `customer_id`
-   * apply a business validation rule to prevent unverified reviews in the bronze layer from being loaded into the silver layer
-7. Write that silver data to S3 under `s3a://hwe-$CLASS/$HANDLE/silver/reviews` using append mode and a checkpoint location of `/tmp/silver-checkpoint`
+   * applying a business validation rule to prevent unverified reviews in the bronze layer from being loaded into the silver layer
+7. Write that silver data to S3 under `s3a://hwe-$CLASS/$HANDLE/silver/reviews` using append mode, a checkpoint location of `/tmp/silver-checkpoint`, and a format of `parquet`
 8. Outside of this program, create a table on top of your S3 data in Athena, and run some queries against your data to validate it is coming across the way you expect. Some useful fields to validate could include:
 
    * product_title
