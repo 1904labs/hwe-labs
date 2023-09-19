@@ -70,5 +70,6 @@ with_review_timestamp.write \
 .mode("overwrite") \
 .json("resources/tim_json")
 
-## Stop the SparkSession
+### Teardown
+# Stop the SparkSession
 spark.stop()
