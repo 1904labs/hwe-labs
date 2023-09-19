@@ -50,10 +50,10 @@ StructField("marketplace", StringType(), nullable=True)
 bronze_reviews = spark.readStream \
     .format("parquet") \
     .schema(bronze_schema) \
-    .load("s3a://hwe-tsagona/bronze/reviews")
+    .load("s3a://hwe-fall-2023/tsagona/bronze/reviews")
 bronze_reviews.createOrReplaceTempView("bronze_reviews")
 
-bronze_customers = spark.read.format("parquet").load("s3a://hwe-tsagona/bronze/customers")
+bronze_customers = spark.read.format("parquet").load("s3a://hwe-fall-2023/tsagona/bronze/customers")
 bronze_customers.createOrReplaceTempView("bronze_customers")
 
 silver_data = spark.sql("""
@@ -86,7 +86,7 @@ silver_data = spark.sql("""
 
 streaming_query = silver_data.writeStream \
     .format("parquet") \
-    .option("path", "s3a://hwe-tsagona/silver/reviews/") \
+    .option("path", "s3a://hwe-fall-2023/tsagona/silver/reviews/") \
     .option("outputMode", "append") \
     .option("checkpointLocation", "/tmp/silver-checkpoint")
 

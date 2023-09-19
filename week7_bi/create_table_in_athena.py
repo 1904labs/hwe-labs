@@ -16,7 +16,7 @@ querystring = """
 create external table hwe.tim_ints2 ( 
     id int) 
 stored as parquet  
-location 's3://hwe-tsagona/ints2'
+location 's3://hwe-fall-2023/tsagona/ints2'
 """
 
 
@@ -26,4 +26,4 @@ ath = boto3.client('athena', region_name='us-east-1', aws_access_key_id=aws_acce
     aws_session_token=aws_session_token)
 
 ath.start_query_execution(QueryString=querystring, WorkGroup="hwe",
-        ResultConfiguration={'OutputLocation': 's3://hwe-tsagona/queries/'})
+        ResultConfiguration={'OutputLocation': 's3://hwe-fall-2023/tsagona/queries/'})
