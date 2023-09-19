@@ -63,9 +63,9 @@ int_columns.show(n=10)
 purchase_date_and_count = spark.sql("SELECT purchase_date, count(*) from reviews GROUP BY purchase_date ORDER BY count(*) DESC LIMIT 1")
 purchase_date_and_count.show()
 
-# Question 11: Write the dataframe from Question 3 to your drive in JSON format.
-# Feel free to pick any directory on your computer.
-# Use overwrite mode.
+## Question 11: Write the dataframe from Question 3 to your drive in JSON format.
+## Feel free to pick any directory on your computer.
+## Use overwrite mode.
 with_review_timestamp.write \
 .mode("overwrite") \
 .json("resources/tim_json")
