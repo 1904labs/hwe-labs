@@ -12,13 +12,13 @@ logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLev
 logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
 ### Questions
-#Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe. Call it "reviews".
+# Question 1: Read the tab separated file named "resources/reviews.tsv.gz" into a dataframe. Call it "reviews".
 reviews = spark.read.csv("resources/reviews.tsv.gz", sep="\t", header=True)
 
-#Question 2: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
+# Question 2: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
 reviews.createOrReplaceTempView("reviews")
 
-#Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
+# Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
 with_review_timestamp = spark.sql("select r.*, current_timestamp() from reviews r")
 with_review_timestamp.printSchema()
 with_review_timestamp.show()
@@ -28,11 +28,11 @@ with_review_timestamp.show()
 # or
 #result.show()
 
-##Question 4: How many records are in the reviews dataframe? 
+## Question 4: How many records are in the reviews dataframe? 
 result = spark.sql("SELECT count(*) FROM reviews")
 result.show()
 
-##Question 5: Print the first 5 rows of the dataframe. 
+## Question 5: Print the first 5 rows of the dataframe. 
 ##Some of the columns are long - print the entire record, regardless of length.
 result = spark.sql("SELECT * FROM reviews LIMIT 5")
 result.show(truncate=False)
