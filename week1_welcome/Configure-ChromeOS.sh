@@ -1,10 +1,9 @@
 #! /bin/bash
 #SYNOPSIS
-#Automates many parts of the HWE Windows development environment setup.
+#Automates many parts of the HWE ChromeOS development environment setup.
 
 #DESCRIPTION
-#Automates many parts of the HWE Windows development environment setup. The main steps include:
-#- Cloning Hadoop binaries for Windows and setting up HADOOP_HOME env variable
+#Automates many parts of the HWE ChromeOS development environment setup. The main steps include:
 #- Ensuring Java version 1.8.* is installed along with having the JAVA_HOME env variable set
 #- Creating a Python virtual environment via Python's pip
 #- Download HWE course Python dependencies like Pyspark
@@ -13,9 +12,9 @@
 #PARAMETER None
 
 #EXAMPLE
-#Assuming you trust this script, you will need to execute it by bypassing the default Powershell execution policy.  Here are the command line steps below:
+#Assuming you trust this script execute it as below:
 # cd <same-directory-as-this-script>
-# bash ./Configure-Environment.sh
+# bash ./Configure-ChromeOS.sh
 
 #
 RED='\033[0;31m'
@@ -113,4 +112,4 @@ else
 fi
 
 echo -e "${GREEN}==============================================" 
-echo -e "== Completed -- all checks passed -- YOU GOOD!${NC}" 
+echo -e "== Completed -- all checks passed -- YOU ARE GOOD!${NC}" 
