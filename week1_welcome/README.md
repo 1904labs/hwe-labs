@@ -4,6 +4,7 @@ To set up your development environment, we are going to install software and set
 
 - Follow these [instructions for Windows](setup-windows.md)
 - Follow these [instructions for Macs](setup-mac.md)
+- Follow these [instructions for AMD64 ChromeBooks](setup-chromeos.md)
 
 ## Environment Setup Overview
 The instructions linked above will configure the following software and environment settings. 
