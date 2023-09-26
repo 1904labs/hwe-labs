@@ -162,3 +162,5 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .DS_Store
+output/.part-00000-07d61acb-0bb5-4918-9c94-9a986871c02f-c000.json.crc
+output/part-00000-07d61acb-0bb5-4918-9c94-9a986871c02f-c000.json
