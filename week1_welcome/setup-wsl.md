@@ -37,25 +37,25 @@ Next we will run a shell script from the command prompt which performs the follo
 
    Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
    1. Change directory to this folder: `cd <folder>/hwe-labs/week1_welcome`
-   2. Execute the script: `bash Configure-ChromeOS.sh`
+   2. Execute the script: `bash Configure-Linux.sh`
    3. Edit your ~/.bashrc file and add the following:
 ```
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/openlogic-openjdk-8-hotspot-amd64
 ```
   4. `source ~/.bashrc`
-  5. Execute the script again: `bash Configure-ChromeOS.sh`
+  5. Execute the script again: `bash Configure-Linux.sh`
   6. You should see a message that all checks have passed.
 
 ## Install Java 1.8
 
 To test your Java installation, type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 is installed.
-    ```
-    C:\Users\you>java -version
-    openjdk version "1.8.0_382"
-    OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
-    OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
-    ```
+```
+C:\Users\you>java -version
+openjdk version "1.8.0_382"
+OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
+OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
+```
 If it does not, please re-run the configuration script again, and double check your JAVA_HOME variable.
 
 ## Visual Studio Code

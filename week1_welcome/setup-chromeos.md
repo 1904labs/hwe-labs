@@ -24,14 +24,14 @@ Next we will run a shell script from the command prompt which performs the follo
 
    Please execute these steps from a command prompt to run the Powershell script.  Note: this script will take several minutes - pyspark is a large download with a lot of dependencies:
    1. Change directory to this folder: `cd <folder>/hwe-labs/week1_welcome`
-   2. Execute the script: `bash Configure-ChromeOS.sh`
+   2. Execute the script: `bash Configure-Linux.sh`
    3. Edit your ~/.bashrc file and add the following:
 ```
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/openlogic-openjdk-8-hotspot-amd64
 ```
   4. `source ~/.bashrc`
-  5. Execute the script again: `bash Configure-ChromeOS.sh`
+  5. Execute the script again: `bash Configure-Linux.sh`
   6. You should see a message that all checks have passed.
 
 ## Install Java 1.8
