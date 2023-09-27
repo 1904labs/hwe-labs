@@ -3,6 +3,7 @@
 To set up your development environment, we are going to install software and setup environment variables. To complete the environment setup:
 
 - Follow these [instructions for Windows](setup-windows.md)
+- Follow these [instructions for Windows - WSL (alternative)](setup-wsl.md)
 - Follow these [instructions for Macs](setup-mac.md)
 - Follow these [instructions for AMD64 ChromeBooks](setup-chromeos.md)
 

@@ -1,6 +1,7 @@
 #! /bin/bash
 #SYNOPSIS
-#Automates many parts of the HWE ChromeOS development environment setup.
+#Automates many parts of the HWE Linux development environment setup.
+#This will work for Ubuntu, ChromeOS and WSL
 
 #DESCRIPTION
 #Automates many parts of the HWE ChromeOS development environment setup. The main steps include:
@@ -94,20 +95,28 @@ else
    fi
 fi
 
+miniconda=${HOME}/miniconda3
+if [ ! -d $miniconda ];
+then
+   echo "Miniconda environment does not exist.  Creating."
+   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   bash Miniconda3-latest-Linux-x86_64.sh
+   rm Miniconda3-latest-Linux-x86_64.sh
+fi
+
 # Setup side-loaded Python using Miniconda.
 virtualEnv=${HOME}/miniconda3/envs/hwe
 if [ ! -d $virtualEnv ];
 then
    echo "Virtual environment does not exist.  Creating."
-   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-   bash Miniconda3-latest-Linux-x86_64.sh
    source ~/.bashrc
+   source ~/miniconda3/etc/profile.d/conda.sh
    conda create --name hwe
    conda activate hwe
    conda install python=3.10
    python -m pip install -r ../resources/requirements.txt
-   rm Miniconda3-latest-Linux-x86_64.sh
 else
+   source ~/miniconda3/etc/profile.d/conda.sh
    conda activate hwe
 fi
 

@@ -1,14 +1,27 @@
-# ChromeOS Setup Instructions
+# Windows WSL Setup Instructions
 
-*** CURRENTLY THIS ASSUMES YOUR CHROMEBOOK IS AMD64, NOT ARM ***
+This is alternative to running native windows environment. This will setup Windows Subsystem for Linux (WSL) and you will run VS Code remotely to that environment.
 
-## Enable Linux Develoment Environment
+**REMEMBER: When this is installed, you will be developing in the Linux environment, not Windows.**
 
-Go to Settings -> Advanced -> <> Devlopers -> Linux development environment
+## Enable Windows Subsystem for Linux (WSL)
 
-Enable Linux with 10G or so of disk space.  Allow it to download and install.
+[Go to this page and instll WSL.](https://learn.microsoft.com/en-us/windows/wsl/install)
 
-Open a command line prompt. (Terminal -> Penguin)
+TL;DR
+
+Open a Powershell window as Administrator and run: `wsl --install`
+
+It will install Ubuntu.  Setup an username and password.
+
+Open Ubuntu with Windows key -> Ubuntu
+
+Make sure the system is up to date.
+
+```
+sudo apt update
+sudo apt upgrade
+```
 
 ## Execute Configure-Linux.sh Script
 
@@ -38,20 +51,23 @@ export JAVA_HOME=/usr/lib/jvm/openlogic-openjdk-8-hotspot-amd64
 
 To test your Java installation, type `java -version`. You should receive a message indicating an OpenJDK instance of Java 1.8 is installed.
 ```
-    C:\Users\you>java -version
-    openjdk version "1.8.0_382"
-    OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
-    OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
+C:\Users\you>java -version
+openjdk version "1.8.0_382"
+OpenJDK Runtime Environment (Temurin)(build 1.8.0_382-b05)
+OpenJDK 64-Bit Server VM (Temurin)(build 25.382-b05, mixed mode)
 ```
 If it does not, please re-run the configuration script again, and double check your JAVA_HOME variable.
 
 ## Visual Studio Code
 
-Follow the instruction here: https://code.visualstudio.com/blogs/2020/12/03/chromebook-get-started
+   1. Navigate to the [VS Code download page](https://code.visualstudio.com/download)
+   2. Click on the Windows 10/11 download to download the .exe and run it.
 
 ## Configure VS Code to use your virtual environment
 
-Open VS Code, Select `File\Open Folder`, navigate to your `hwe-labs` repo directory, click once on `hwe-labs` to highlight it (don't double click to enter it!), then click the `Select Folder` button.
+Open VS Code, let is install the WSL plugin and then on the lower left hand side click the blue >< and then 'Connect to WSL'.  This will take you to the Ubuntu environment that was just installed.
+
+Select `File\Open Folder`, navigate to your `hwe-labs` repo directory, click once on `hwe-labs` to highlight it (don't double click to enter it!), then click the `Select Folder` button.
 
 On the left side explorer panel, double click on `week1_welcome\spark_installation_test.py`.
 
