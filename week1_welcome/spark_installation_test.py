@@ -45,8 +45,8 @@ def spark_file_io_test(spark: SparkSession):
         # Party on Wayne
         print("And even better yet, you can read from and write to storage!")
     else:
-        # I'm no worthy
-        print("Unfortunately the file IO ops did not work as expected.\r\n" +
+        # I'm not worthy (or you're environment aint ready yet)
+        print("Unfortunately the file IO operations did not work as expected.\r\n" +
               "Consider working through the `setup-<your device type>.md` instructions again.")
 
 # Create a SparkSession
