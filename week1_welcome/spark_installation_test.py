@@ -13,7 +13,6 @@ def spark_df_test(spark: SparkSession):
     data = [("Congratulations! You have successfully executed a Spark application written in Python!",)]
 
     # Define the schema for the DataFrame
-    #schema = StringType()
     schema  = StructType([
         StructField("message", StringType(), True)
     ])
