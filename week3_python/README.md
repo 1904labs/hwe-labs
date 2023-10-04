@@ -19,6 +19,10 @@ Note: from this point forward in the course, we will be connecting to various re
 
 Refer to the videos to see how to set these.
 
+Alternatively, copy the 'sample.env' to a file called '.env'.
+
+Place the environment variables into this file.
+
 ## Assignment
 
 ### Questions
