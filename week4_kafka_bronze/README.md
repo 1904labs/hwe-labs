@@ -20,6 +20,10 @@ Note: from this point forward in the course, we will be connecting to various re
 
 Make sure these variables are updated before running your application.
 
+Copy the 'sample.env' to a file called '.env'.
+
+Place the environment variables into this file.
+
 ## Setting up Kafka environment variables
 
 We are going to be adding 3 new environment variables this week, which will allow you to connect to the HWE Kafka cluster, also hosted on AWS:

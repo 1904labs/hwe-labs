@@ -1,7 +1,11 @@
 import boto3
 import os
 
-handle="CHANGEME"
+# Load environment variables.
+from dotenv import load_dotenv
+load_dotenv()
+
+handle= os.environ.get("AWS_HANDLE")
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
 aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
 

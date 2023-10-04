@@ -2,6 +2,9 @@ import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, current_timestamp
 
+# Load environment variables.
+from dotenv import load_dotenv
+load_dotenv()
 
 def getScramAuthString(username, password):
   return f"""org.apache.kafka.common.security.scram.ScramLoginModule required
