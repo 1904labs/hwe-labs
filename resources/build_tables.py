@@ -1,7 +1,11 @@
-emport os
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import desc
 from pyspark.sql.functions import current_timestamp
+
+# Load environment variables.
+from dotenv import load_dotenv
+load_dotenv()
 
 
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
