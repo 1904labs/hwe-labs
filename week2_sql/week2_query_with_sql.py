@@ -46,7 +46,7 @@ spark.sql("SELECT reviews.product_category FROM reviews").show(n=50)
 # Question 7: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
 # What is the product title for that review? How many helpful votes did it have?
 
-spark.sql("SELECT reviews.product_title, reviews.helpful_votes FROM reviews ORDER BY reviews.helpful_votes DESC LIMIT 1").show()
+spark.sql("SELECT reviews.product_title, reviews.helpful_votes FROM reviews ORDER BY cast(reviews.helpful_votes as INT) DESC LIMIT 1").show()
 # |Xbox Live Subscri...|          993|
 
 # Question 8: How many reviews exist in the dataframe with a 5 star rating?
@@ -62,14 +62,17 @@ spark.sql("SELECT cast(reviews.star_rating as int), cast(reviews.helpful_votes a
 # Question 10: Find the date with the most purchases.
 # Print the date and total count of the date which had the most purchases.
 
-toWrite = spark.sql(
-    "SELECT reviews.purchase_date, COUNT(*) FROM reviews GROUP BY reviews.purchase_date ORDER BY count(reviews.purchase_date) DESC").show(n=1)
+spark.sql(
+    "SELECT reviews.purchase_date, COUNT(*) \
+        FROM reviews \
+            GROUP BY reviews.purchase_date \
+                ORDER BY count(reviews.purchase_date) DESC").show(1)
 #  2013-03-07|     760
 
 # Question 11: Write the dataframe from Question 3 to your drive in JSON format.
 # Feel free to pick any directory on your computer.
 # Use overwrite mode.
-reviews.write.mode("overwrite").json("output")
+reviews.write.json("output", mode="overwrite")
 
 # Teardown
 # Stop the SparkSession
