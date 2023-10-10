@@ -1,6 +1,10 @@
 import os
 from kafka import KafkaProducer
 
+# Load environment variables.
+from dotenv import load_dotenv
+load_dotenv()
+
 # Kafka broker details
 bootstrap_servers = os.environ.get("HWE_BOOTSTRAP")
 username = os.environ.get("HWE_USERNAME")

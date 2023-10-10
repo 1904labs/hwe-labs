@@ -1,6 +1,9 @@
 import os
 from kafka import KafkaConsumer
 
+# Load environment variables.
+from dotenv import load_dotenv
+load_dotenv()
 
 def getScramAuthString(username, password):
   return f"""org.apache.kafka.common.security.scram.ScramLoginModule required

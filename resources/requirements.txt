@@ -3,3 +3,4 @@ kafka-python #Used by Kafka connection test, simple producer to Kafka
 faker #Used to generate fake customer data
 boto3 #Used to create tables in Glue Data Catalog that can be queried by Athena
 tabulate #Used to print Kafka messages in an aesthetic way
+python-dotenv #Automatically pull from a .env file.

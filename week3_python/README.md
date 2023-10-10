@@ -17,39 +17,13 @@ This week, we're going to write a Python program that:
 
 Note: from this point forward in the course, we will be connecting to various resources hosted on AWS. In order to successfully connect you will need to set several environment variables on your machine.
 
-### Access Key, Secret Key, and Session Token
+Refer to the videos to see how to set these.
 
-You will be authenticating to AWS using temporary security credentials you will obtain from signing on via the AWS console. These temporary credentials will expire after 12 hours, at which point you will need to re-generate new ones.
+Alternatively, copy the 'sample.env' to a file called '.env'.
 
-To get your credentials:
-
-1. Sign onto the AWS console.
-2. Click "Command line or programmatic access"
-
-We need to set 3 environment variables on your machine:
-   * AWS_ACCESS_KEY_ID - set this to the value of `AWS Access Key ID` from the screen above
-   * AWS_SECRET_ACCESS_KEY - set this to the value of `AWS Secret Access Key` from the screen above
-   * AWS_SESSION_TOKEN - set this to the value of `AWS Session Token` from the screen above
-
-**Important**: Any time you update environment variables, you will need to close and re-open all command prompts, all VS Code instances, etc. They will *not* automatically pick up changes to your environment.
-
-For example, if you run your program and then realize your credentials have expired, it's not enough to simply obtain new creds, update your variables with the new values, and re-run. You must:
-   * obtain new credentials
-   * update your environment variables
-   * close all terminals, editors, etc.
-   * relaunch all terminals, editors, etc.
-   * re-run your application
+Place the environment variables into this file.
 
 ## Assignment
-
-### Setup
-
-We will define Python variables which read the values of environment variables which need to be set to:
-   * AWS_ACCESS_KEY_ID = the valid, recently acquired, temporary AWS access key for your IAM user
-   * AWS_SECRET_ACCESS_KEY = the valid, recently acquired, temporary AWS secret access key for your IAM user
-   * AWS_SESSION_TOKEN = the valid, recently acquired, temporary AWS session for your IAM user
-
-We will define the `SparkSession` for you going forward, since some of the parameters get complex from here.
 
 ### Questions
 
