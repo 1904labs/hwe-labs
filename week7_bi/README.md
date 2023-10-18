@@ -11,11 +11,11 @@ We will be using the open source package [Apache Superset](https://superset.apac
 ## Assignment
 
 1. Create an Apache Superset dataset over your gold layer data (prefix it with your userid, please).
-    a. This can be against your raw table or using a SQL query.
+* This can be against your raw table or using a SQL query.
 2. Create at least three reports against your data.
-    a. Total reviews by year bar chart.
-    b. Pie chart which breaks down the total review by gender.
-    c. Geography chart showing the average star reviews by state.
+* Total reviews by year bar chart.
+* Pie chart which breaks down the total review by gender.
+* Geography chart showing the average star reviews by state.
         (HINT: To get the states to show up you have to prefix them with 'US-')
 
 If you have not completed week 6 and still want to use Superset, you can use the data in the 'demo' tables to do this assignment.
