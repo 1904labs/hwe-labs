@@ -22,4 +22,21 @@ The data pipeline you construct will look like below:
 - TODO: Week 7 BI
 
 # Important Course Resources
-- [Course videos on the Thinkific platform](https://hours-school-d024.thinkific.com/courses/hours-with-experts-cloud)
+- [Course resources on the Thinkific platform](https://hours-school-d024.thinkific.com/courses/hours-with-experts-cloud)
+
+# Continued Learning
+Want to continue your learning in Data Engineering?  Great -- check out these links:
+
+* [STL Big Data - Innovation, Data Engineering, Analytics Group](https://www.meetup.com/st-louis-big-data-idea/)
+A meetup for users of Big Data services and tools in the Saint Louis Area.  We are interested in Innovation (new tools, techniques, and services), Data Engineering (architecture and design of data movement systems), and Analytics (converting information into meaning).
+(with Kit Menke and Matt Harris)
+
+* [Data Engineering Podcast](https://www.dataengineeringpodcast.com/)
+This show goes behind the scenes for the tools, techniques, and difficulties associated with the discipline of data engineering. Databases, workflows, automation, and data manipulation are just some of the topics that you will find here.
+
+
+## Some Previous "STL Big Data - I.D.E.A" Meetups
+
+[Apache Iceberg Presentation - August 2023](https://drive.google.com/file/d/1cM9SD8euuQCPoGUQukQpIGp7y6hgXknN/view?usp=share_link)
+
+[LakeFS Presentation - June 2023](https://drive.google.com/file/d/1OHmEgfGuStoF7ZHhiMVpyVEkML1Hf37v/view?usp=share_link)
