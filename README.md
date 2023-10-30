@@ -22,7 +22,7 @@ The data pipeline you construct will look like below:
 - TODO: Week 7 BI
 
 # Important Course Resources
-- [Course videos on the Thinkific platform](https://hours-school-d024.thinkific.com/courses/hours-with-experts-cloud)
+- [Course resources on the Thinkific platform](https://hours-school-d024.thinkific.com/courses/hours-with-experts-cloud)
 
 # Continued Learning
 Want to continue your learning in Data Engineering?  Great -- check out these links:
