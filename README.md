@@ -39,5 +39,4 @@ This show goes behind the scenes for the tools, techniques, and difficulties ass
 
 [Apache Iceberg Presentation - August 2023](https://drive.google.com/file/d/1cM9SD8euuQCPoGUQukQpIGp7y6hgXknN/view?usp=share_link)
 
-[LakeFS Presentation - June 2023]
-(https://drive.google.com/file/d/1OHmEgfGuStoF7ZHhiMVpyVEkML1Hf37v/view?usp=share_link)
+[LakeFS Presentation - June 2023](https://drive.google.com/file/d/1OHmEgfGuStoF7ZHhiMVpyVEkML1Hf37v/view?usp=share_link)
