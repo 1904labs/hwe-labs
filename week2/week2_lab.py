@@ -41,27 +41,57 @@ reviews = None
 # Some of the columns are long - print the entire record, regardless of length.
 
 
-## Challenge 3: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
+## Challenge 3: Print the schema and verify that all columns are strings and 
+# the following columns are found in the DataFrame:
+#
+
+
+## Challenge 4: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
 # Name the virtual view 'reviews_view' for future referencing.
 
 
-## Challenge 4: Determine the number of records in the 'reviews_view' view and the 'reviews' dataframe. 
+## Challenge 5: Determine the number of records in the 'reviews_view' view and the 'reviews' dataframe. 
 # With SQL - use 'reviews_view'
 # With DataFrame - use 'reviews' dataframe
 
-# Question 4.1: How many records are there?
+# Question 5.1: How many records are there?
 
 
-## Challenge 5: Create a new dataframe based on "reviews" with exactly 1 column, the: the value 
+## Challenge 6: Create a new dataframe based on "reviews" with exactly 1 column, the: the value 
 # of the 'product_category' field. Determine the 'product_category' that is most common.
 # With SQL - use 'reviews_view'
 # With DataFrame - use 'reviews' dataframe
 
-# Question 5.1: Which value appears to be the most common?
+# Question 6.1: Which value is the most common?
 
 
+## Challenge 7: Find how many reviews exist in the dataframe with a 5 star rating.
+# With SQL - use 'reviews_view'
+# With DataFrame - use 'reviews' dataframe
+ 
+# Question 7.1: How many reviews exist in the dataframe with a 5 star rating?
 
 
+## Challenge 8: Find the most helpful review in the dataframe - the one with 
+# the highest number of helpful votes.
+# With SQL - use 'reviews_view'
+# With DataFrame - use 'reviews' dataframe
+
+# Question 8.1: What is the product title for that review? 
+# Question 8.2: How many helpful votes did it have?
+
+
+## Challenge 9: Find the date with the most purchases.
+# With SQL - use 'reviews_view'
+# With DataFrame - use 'reviews' dataframe
+
+# Question 9.1: What is the date with the most purchases?
+# Question 9.2: What is the count of purchases?
+
+
+# Question 10: Currently every field in the data file is interpreted as a string, 
+# but there are 3 that should really be numbers.  Create a new dataframe with just 
+# those 3 columns, except cast them as "int"s. Look at 10 rows from this dataframe.
 
 
 
@@ -72,17 +102,13 @@ reviews = None
 
 
 
-# Question 7: Find the most helpful review in the dataframe - the one with the highest number of helpful votes.
-# What is the product title for that review? How many helpful votes did it have?
 
-# Question 8: How many reviews exist in the dataframe with a 5 star rating?
 
-# Question 9: Currently every field in the data file is interpreted as a string, but there are 3 that should really be numbers.
-# Create a new dataframe with just those 3 columns, except cast them as "int"s.
-# Look at 10 rows from this dataframe.
 
-# Question 10: Find the date with the most purchases.
-# Print the date and total count of the date which had the most purchases.
+
+
+
+
 
 ##Question 11: Write the dataframe from Question 3 to your drive in JSON format.
 ##Feel free to pick any directory on your computer.
@@ -94,13 +120,9 @@ reviews = None
 
 
 
-####### Questions and Answers
-
-
-
-
 ####### Stretch Challenges
 
+## Stretch Challenge 1:
 # Continue on to 'test_week2_lab.py' to tackle the unit test challenges.
 # Note you will need to fill out the method bodies below
 
@@ -110,7 +132,7 @@ def get_most_frequent_product_category(df: DataFrame) -> str:
     If the 
 
     Raises:
-        ValueError: 
+        ValueError: The DataFrame does not contain a 'product_category' column.
 
     Parameters:
         df (DataFrame): The DataFrame that contains the 'product_category' column.
@@ -120,7 +142,7 @@ def get_most_frequent_product_category(df: DataFrame) -> str:
     '''    
     return None
 
-
-# Work with a partner to perform a merge request on 
-# YOUR branch (note merge requests to the cource branch won't work)
+## Stretch Challenge 2:
+# Work with a partner to perform a merge request on YOUR branch 
+# (note merge requests to the source branch won't work)
 
