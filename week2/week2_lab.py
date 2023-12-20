@@ -15,9 +15,10 @@ from pyspark.sql import SparkSession, DataFrame
 spark = None
 
 # For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
-logger = spark.sparkContext._jvm.org.apache.log4j
-logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
-logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
+if not spark is None:
+    logger = spark.sparkContext._jvm.org.apache.log4j
+    logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
+    logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
 ### Challeneges and Questions
 
@@ -89,30 +90,15 @@ reviews = None
 # Question 9.2: What is the count of purchases?
 
 
-# Question 10: Currently every field in the data file is interpreted as a string, 
+# Challenge 10: Currently every field in the data file is interpreted as a string, 
 # but there are 3 that should really be numbers.  Create a new dataframe with just 
-# those 3 columns, except cast them as "int"s. Look at 10 rows from this dataframe.
+# keeping the original columns but casting the 3 columns that should be integers
+# as actually ints.
 
 
-
-# Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##Question 11: Write the dataframe from Question 3 to your drive in JSON format.
-##Feel free to pick any directory on your computer.
-##Use overwrite mode.
+# Challenge 11: Write the dataframe from Challenge 10 to your drive in JSON format.
+# Feel free to pick any directory on your computer.
+# Use overwrite mode.
 
 ### Teardown
 # Stop the SparkSession
@@ -122,27 +108,31 @@ reviews = None
 
 ####### Stretch Challenges
 
-## Stretch Challenge 1:
-# Continue on to 'test_week2_lab.py' to tackle the unit test challenges.
-# Note you will need to fill out the method bodies below
+## Stretch Challenge:
+# For this stretch challenge you will complete the implementation of the 
+# method below implementing all documented aspects of its operation.  To ensure
+# this is completed fully, you will execute unit tests that will verify the code
+# executes as expected.  To complete this stretch challenge, please complete
+# the following:
+#   1.  Fill out the method body below
+#   2.  Execute the unit tests found in 'test_week2_lab.py'...keep 
+#       iterating until all of them pass 
 
-def get_most_frequent_product_category(df: DataFrame) -> str:
+def get_most_frequent_product_categories(df: DataFrame) -> DataFrame:
     '''
-    Gets the most frequently occurring 'product_category' value.
-    If the 
-
+    Gets the most frequently occurring values from the String 'product_category'
+     column passed into the DataFrame.
+    
     Raises:
         ValueError: The DataFrame does not contain a 'product_category' column.
-
+         
     Parameters:
         df (DataFrame): The DataFrame that contains the 'product_category' column.
 
     Returns:
-        The most frequently occurring 'product_category' value.
-    '''    
+        A DataFrame with one column named 'product_category' containing only the 
+        most frequent 'product_category' values.  If no rows are included in the
+        input DataFrame, zero rows are returned in the output DataFrame.   
+    '''
+    # TODO: fill in with actual implementation    
     return None
-
-## Stretch Challenge 2:
-# Work with a partner to perform a merge request on YOUR branch 
-# (note merge requests to the source branch won't work)
-
