@@ -36,6 +36,9 @@ silver_schema = None
 #Define a streaming dataframe using readStream on top of the silver reviews directory on S3
 silver_data = None
 
+# TODO: figure out how to apply the review timestamp
+# Question 3: Add a column to the dataframe named "review_timestamp", representing the current time on your computer. 
+
 #Define a watermarked_data dataframe by defining a watermark on the `review_timestamp` column with an interval of 10 seconds
 watermarked_data = None
 
