@@ -43,7 +43,7 @@ reviews = None
 
 ## Challenge 3: Print the schema and verify that all columns are strings and 
 # the following columns are found in the DataFrame:
-#
+# TODO: fill out with expected columns
 
 
 ## Challenge 4: Create a virtual view on top of the reviews dataframe, so that we can query it with Spark SQL.
