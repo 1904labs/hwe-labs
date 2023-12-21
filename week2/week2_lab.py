@@ -15,10 +15,9 @@ from pyspark.sql import SparkSession, DataFrame
 spark = None
 
 # For Windows users, quiet errors about not being able to delete temporary directories which make your logs impossible to read...
-if not spark is None:
-    logger = spark.sparkContext._jvm.org.apache.log4j
-    logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
-    logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
+logger = spark.sparkContext._jvm.org.apache.log4j
+logger.LogManager.getLogger("org.apache.spark.util.ShutdownHookManager"). setLevel( logger.Level.OFF )
+logger.LogManager.getLogger("org.apache.spark.SparkEnv"). setLevel( logger.Level.ERROR )
 
 ### Challeneges and Questions
 
@@ -109,30 +108,4 @@ reviews = None
 ####### Stretch Challenges
 
 ## Stretch Challenge:
-# For this stretch challenge you will complete the implementation of the 
-# method below implementing all documented aspects of its operation.  To ensure
-# this is completed fully, you will execute unit tests that will verify the code
-# executes as expected.  To complete this stretch challenge, please complete
-# the following:
-#   1.  Fill out the method body below
-#   2.  Execute the unit tests found in 'test_week2_lab.py'...keep 
-#       iterating until all of them pass 
-
-def get_most_frequent_product_categories(df: DataFrame) -> DataFrame:
-    '''
-    Gets the most frequently occurring values from the String 'product_category'
-     column passed into the DataFrame.
-    
-    Raises:
-        ValueError: The DataFrame does not contain a 'product_category' column.
-         
-    Parameters:
-        df (DataFrame): The DataFrame that contains the 'product_category' column.
-
-    Returns:
-        A DataFrame with one column named 'product_category' containing only the 
-        most frequent 'product_category' values.  If no rows are included in the
-        input DataFrame, zero rows are returned in the output DataFrame.   
-    '''
-    # TODO: fill in with actual implementation    
-    return None
+# Go to 'test_week2_lab.py' for the stretch challenge

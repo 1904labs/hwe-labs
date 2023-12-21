@@ -1,20 +1,40 @@
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.types import StructType, StructField, StringType
 import pandas as pd
-from week2_lab import get_most_frequent_product_categories
 
-#def get_test_schema():
-#    return StructType([
-#        StructField("color", StringType(), True),
-#        StructField("product_category", StringType(), True),
-#        StructField("title", StringType(), True)
-#    ])
+# Welcome to the stretch challenge. The code below has two sections:
+#
+#   1) The method under test - you will fill out the method body
+#       implementing the behavior called out in the doc string.
+#
+#   2) The tests verifying the method operates per the documentation - 
+#       you simply execute these and keep iterating on the method under
+#       test until all of these pass.
 
-#def get_expected_schema():
-#    return StructType([
-#        StructField("product_category", StringType(), True),
-#    ])
 
+################# method under test
+
+def get_most_frequent_product_categories(df: DataFrame) -> DataFrame:
+    '''
+    Gets the most frequently occurring values from the String 'product_category'
+     column passed into the DataFrame.
+    
+    Raises:
+        ValueError: The DataFrame does not contain a 'product_category' column.
+         
+    Parameters:
+        df (DataFrame): The DataFrame that contains the 'product_category' column.
+
+    Returns:
+        A DataFrame with one column named 'product_category' containing only the 
+        most frequent 'product_category' values.  If no rows are included in the
+        input DataFrame, zero rows are returned in the output DataFrame.   
+    '''
+    # TODO: fill in with actual implementation    
+    return None
+
+
+################# tests
 
 def get_most_frequent_product_categories__one_most_frequent__most_frequent_returned():
     ### ARRANGE
@@ -68,7 +88,7 @@ def get_most_frequent_product_categories__no_rows__none_returned():
     ### ASSERT
     assert result is None
 
-
+################# executing tests
 
 spark = SparkSession.builder.appName("Testing get_most_frequent_product_categories").getOrCreate()
 
