@@ -1,6 +1,7 @@
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.types import StructType, StructField, StringType
 import pandas as pd
+import unittest
 
 # Welcome to the stretch challenge. The code below has two sections:
 #
@@ -88,6 +89,28 @@ def get_most_frequent_product_categories__no_rows__none_returned():
     ### ASSERT
     assert result is None
 
+
+def get_most_frequent_product_categories__no_product_category_column__value_error_raised():
+    ### ARRANGE
+    # define the schema, but include no data
+    schema = StructType([
+        StructField("color", StringType(), True),
+        #StructField("product_category", StringType(), True),  # commented out to generate the error
+        StructField("title", StringType(), True)
+    ])
+    df = spark.createDataFrame([], schema)
+    result_ve: ValueError = None
+
+    ### ACT
+    try:
+        result = get_most_frequent_product_categories(df)
+    except ValueError as ve:
+        result_ve = ve
+
+    ### ASSERT
+    assert not result_ve is None 
+
+
 ################# executing tests
 
 spark = SparkSession.builder.appName("Testing get_most_frequent_product_categories").getOrCreate()
@@ -95,5 +118,6 @@ spark = SparkSession.builder.appName("Testing get_most_frequent_product_categori
 get_most_frequent_product_categories__one_most_frequent__most_frequent_returned()
 get_most_frequent_product_categories__two_most_frequent__two_frequent_returned()
 get_most_frequent_product_categories__no_rows__none_returned()
+get_most_frequent_product_categories__no_product_category_column__value_error_raised()
 
 spark.stop()
