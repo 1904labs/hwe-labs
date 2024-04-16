@@ -38,7 +38,9 @@ Install an Athena Python driver
 
 
 pip install pyathena[pandas]==2.25.2 # Must be >=2, < 3
-Create an IAM User
+```
+
+# Create an IAM User
 
 
 #Create a user in IAM with AthenaFullAccess
@@ -47,9 +49,8 @@ Create an IAM User
 Create the connection
 Settings > Database Connections > Other > (Click “Database” button) > “Supported Databases” > Other
 
-
-
-SQLAlchemy URI = awsathena+rest://AWS_ACCESS_KEY_ID:AWS_SECRET_ACCESS_KEY@athena.us-east-1.amazonaws.com/hwe?s3_staging_dir=s3://hwe-tsagona/superset_staging&work_group=hwe
-
 ```
+SQLAlchemy URI = awsathena+rest://AWS_ACCESS_KEY_ID:AWS_SECRET_ACCESS_KEY@athena.us-east-1.amazonaws.com/hwe?s3_staging_dir=s3://<bucket>/superset_staging&work_group=hwe
+```
+
 Then you are ready to start creating data sets.
