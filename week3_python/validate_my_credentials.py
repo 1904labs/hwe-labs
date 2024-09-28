@@ -18,7 +18,7 @@ s3 = boto3.client(
 
 
 # Define the S3 bucket and file path
-bucket_name = 'hwe-fall-2023'
+bucket_name = 'hwe-fall-2024'
 file_key = f'{handle}/success_message'
 
 # Download and display the contents of the S3 object
