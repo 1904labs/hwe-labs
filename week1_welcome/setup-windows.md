@@ -106,3 +106,16 @@ SUCCESS: The process with PID 10068 (child process of PID 19344) has been termin
 SUCCESS: The process with PID 19344 (child process of PID 9988) has been terminated.
 SUCCESS: The process with PID 9988 (child process of PID 12832) has been terminated.
 ```
+## Troubleshooting Winutils
+
+On Windows, you may encounter [errors](https://stackoverflow.com/questions/45947375/why-does-starting-a-streaming-query-lead-to-exitcodeexception-exitcode-1073741) like `Error writing stream metadata StreamMetadata` or other issues writing files (usually to temp directories). 
+
+First, validate that winutils is working correctly by navigating to the winutils bin directory and executing:
+
+```
+winutils.exe ls
+```
+
+If you get no output and the return code is non-zero, then you're probably missing [Visual Studio 2010 (VC++ 10.0) SP1](https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2010-vc-100-sp1-no-longer-supported). Download and install it and check again. here. [Direct link to download page](https://www.microsoft.com/en-us/download/details.aspx?id=26999).
+
+Why? The winutils binaries are compiled using the Visual Studio 2010 Redistributable and need it to run.
