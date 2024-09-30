@@ -14,7 +14,7 @@ password = os.environ.get("HWE_PASSWORD")
 
 # Kafka topic to produce messages to
 topic = 'reviews'
-limit=5000
+limit = float('inf')
 
 # Create Kafka producer
 producer = KafkaProducer(security_protocol="SASL_SSL",
@@ -45,3 +45,4 @@ producer.flush()
 # Close the producer
 producer.close()
 
+print(f"Total records sent: {num_records_sent}")
