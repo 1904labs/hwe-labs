@@ -59,7 +59,7 @@ StructField("marketplace", StringType(), nullable=True)
 silver_data = spark.readStream \
     .format("parquet") \
     .schema(silver_schema) \
-    .load("s3a://hwe-fall-2023/tsagona/silver/reviews")
+    .load("s3a://hwe-spring-2025/tsagona/silver/reviews")
 
 #Define a watermarked_data dataframe by defining a watermark on the `review_timestamp` column with an interval of 10 seconds
 watermarked_data = silver_data \
@@ -75,7 +75,7 @@ write_gold_query = aggregated_data \
     .writeStream \
     .format("delta") \
 .option("outputMode", "append") \
-.option("path", "s3a://hwe-fall-2023/tsagona/gold/fact_review") \
+.option("path", "s3a://hwe-spring-2025/tsagona/gold/fact_review") \
 .option("checkpointLocation", "/tmp/gold-checkpoint")
 
 write_gold_query.start().awaitTermination()

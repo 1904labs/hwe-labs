@@ -71,7 +71,7 @@ query = df \
     .writeStream \
     .outputMode("append") \
     .format("parquet") \
-    .option("path", "s3a://hwe-fall-2023/tsagona/bronze/reviews") \
+    .option("path", "s3a://hwe-spring-2025/tsagona/bronze/reviews") \
     .option("checkpointLocation", "/tmp/kafka-checkpoint") \
     .start()
 

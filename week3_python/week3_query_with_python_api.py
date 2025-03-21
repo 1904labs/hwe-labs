@@ -91,7 +91,7 @@ with_review_timestamp.printSchema()
 #Make sure to write it using overwrite mode: append will keep appending duplicates, which will cause problems in later labs...
 with_review_timestamp.write \
    .mode("overwrite") \
-   .parquet("s3a://hwe-fall-2023/tsagona/bronze/reviews_static/")
+   .parquet("s3a://hwe-spring-2025/tsagona/bronze/reviews_static/")
 
 #Question 11: Read the tab separated file named "resources/customers.tsv.gz" into a dataframe
 #Write to S3 under s3a://hwe-$CLASS/$HANDLE/bronze/customers
@@ -100,7 +100,7 @@ with_review_timestamp.write \
 customers = spark.read.csv("resources/customers.tsv.gz", sep="\t", header=True)
 customers.write \
     .mode("overwrite") \
-    .parquet("s3a://hwe-fall-2023/tsagona/bronze/customers")
+    .parquet("s3a://hwe-spring-2025/tsagona/bronze/customers")
 
 # Stop the SparkSession
 spark.stop()
