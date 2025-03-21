@@ -102,5 +102,9 @@ customers.write \
     .mode("overwrite") \
     .parquet("s3a://hwe-spring-2025/tsagona/bronze/customers")
 
+#Question 12: Display the schema of the customers dataframe.
+#This will be useful when you use it in a later lab...
+customers.printSchema()
+
 # Stop the SparkSession
 spark.stop()
