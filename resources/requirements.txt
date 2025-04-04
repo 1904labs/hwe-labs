@@ -1,4 +1,4 @@
-pyspark==3.1.3
+pyspark==3.3.2
 kafka-python #Used by Kafka connection test, simple producer to Kafka
 faker #Used to generate fake customer data
 boto3 #Used to create tables in Glue Data Catalog that can be queried by Athena
