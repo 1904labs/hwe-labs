@@ -23,17 +23,9 @@ echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-## Enable `homebrew/cask-versions` tap
-
-We'll need to access cask-versions in order to install specific versions of Python and Java:
-
-```zsh
-brew tap homebrew/cask-versions
-```
-
 ## Installing prerequisites (M-series Macs only)
-
-If you are on an Intel Mac, skip this step.
+> [!IMPORTANT]  
+> If you are on an Intel Mac, skip this step.
 
 If you are on an M-series Mac (with an M1/M2 chip or any of their variants), you will need to install Rosetta 2 for Java 8 to work on your computer:
 ```zsh
@@ -46,8 +38,11 @@ You'll need to provide your password and enter `A` to accept the terms and condi
 
 We need to install Java, Python (macOS ships with Python preinstalled, but it's probably not the version we need, so we need to explicitly grab Python 3.10), Visual Studio Code (our IDE), and a virtual environment manager. We'll use Homebrew to make that easy:
 
+> [!TIP]
+> If you already have VSCode installed, you do not need to include `visual-studio-code` in your `brew install` command.
+
 ```zsh
-brew install python@3.10 temurin8 visual-studio-code virtualenvwrapper 
+brew install python@3.10 temurin@8 virtualenvwrapper visual-studio-code
 ```
 
 Once the necessary software is installed, we'll need to add a step to our shell's rc file in order to easily manage our virtual environment:
