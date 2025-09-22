@@ -92,6 +92,7 @@ else
       echo -e "${RED}== Incorrect version of Java in JAVA_HOME."
       echo -e "Should be one of these in /usr/lib/jvm${NC}"
       ls /usr/lib/jvm
+      exit
    fi
 fi
 
